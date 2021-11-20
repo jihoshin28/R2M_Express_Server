@@ -1,45 +1,118 @@
-const express = require('express')
-const router = express.Router()
+const { Router } = require('express')
+const quotesController = require('../controllers/quotes')
+const bookingsController = require('../controllers/bookings')
+const itemsController = require('../controllers/items')
+const reviewsController = require('../controllers/reviews')
+const quoteItemsController = require('../controllers/quote_items')
+const bookingItemsController = require('../controllers/booking_items')
+// const auth = require('../controllers/auth')
+// const admin = require('../controllers/admin')
+// const verifyToken = require('../middleware/index.js').verifyToken
 
-// Require controllers
-// const customerController = require('../controllers/customer')
-// const driverController = require('../controllers/driver')
-// const orderController = require('../controllers/order')
-// const cardController = require('../controllers/card')
-// const authController = require('../controllers/auth')
+const router = Router()
 
-router.get('/', (req, res) => {
-    res.send({ response: "Main chat page"}).status(200)
-})
+console.log(verifyToken, 'verifyToken')
+router.get('/', (req, res) => res.send('Welcome to UpackHaulers!'))
 
-// Customer routes
-// router.get('/customers/:id', customerController.getCustomer)
-// router.post('/customers', customerController.createCustomer)
-// router.patch('/customers/:id', customerController.updateCustomer)
-// router.delete('/customers/:id', customerController.deleteCustomer)
+// quotes routes
 
-// // Driver routes
-// router.get('/drivers/:id', driverController.getDriver)
-// router.post('/drivers', driverController.createDriver)
-// router.patch('/drivers/:id', driverController.updateDriver)
-// router.delete('/drivers/:id', driverController.deleteDriver)
+router.get('/quotes', verifyToken, quotesController.getAllQuotes)
+router.get('/quotes/:id', verifyToken, quotesController.getQuoteById)
+router.post('/quotes', verifyToken, quotesController.createQuote)
+router.put('/quotes/:id', verifyToken, quotesController.updateQuote)
+router.delete('/quotes/:id', verifyToken, quotesController.deleteQuote)
 
-// // Order routes
-// router.get('/orders/:id', orderController.getOrder)
-// router.get('/orders', orderController.getOrders)
-// router.post('/orders', orderController.createOrder)
-// router.patch('/orders/:id', orderController.updateOrder)
-// router.delete('/orders/:id', orderController.deleteOrder)
+// bookings routes
 
-// // Card routes
-// router.get('/cards/:customer_id', cardController.getCustomerCards)
-// router.post('/cards', cardController.createCard)
-// router.patch('/cards/:id', cardController.updateCard)
-// router.delete('/cards/:id', cardController.deleteCard)
+router.get('/bookings', verifyToken, bookingsController.getAllBookings)
+router.get('/bookings/:id', verifyToken, bookingsController.getBookingById)
+router.post('/bookings', verifyToken, bookingsController.createBooking)
+router.put('/bookings/:id', verifyToken, reviews.updateBooking)
+router.delete('/bookings/:id', verifyToken, bookingsController.deleteBooking)
 
-// //Auth routes
-// router.post('/login', authController.Login)
-// router.post('/googleAuth', authController.GoogleAuth)
-// router.post('/phoneAuth', authController.PhoneAuth)
+// items routes
+
+router.get('/items', verifyToken, itemsController.getAllItems)
+router.get('/items/:id', verifyToken, itemsController.getItemById)
+router.post('/items', verifyToken, itemsController.createItem)
+router.delete('/items/:id', verifyToken, itemsController.deleteItem)
+
+// reviews routes
+
+router.get('/reviews', verifyToken, reviewsController.getAllReviews)
+router.get('/reviews/:id', verifyToken, reviewsController.getReviewById)
+router.post('/reviews', verifyToken, reviewsController.createReview)
+router.put('/reviews/:id', verifyToken, reviewsController.updateReview)
+router.delete('/reviews/:id', verifyToken, reviewsController.deleteReview)
+
+//quote_item routes
+
+router.get('/quote_items', verifyToken, quoteItemsController.getAllQuoteItems)
+router.post('/quote_items', verifyToken, quoteItemsController.createQuoteItem)
+router.put('/quote_items/:item_id/:quote_id', verifyToken, quoteItemsController.updateQuoteItem)
+router.delete('/quote_items/:item_id/:quote_id', verifyToken, quoteItemsController.deleteQuoteItem)
+
+//booking_item routes
+
+router.get('/booking_items', verifyToken, bookingItemsController.getAllBookingItems)
+router.post('/booking_items', verifyToken, bookingItemsController.createBookingItem)
+router.put('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.updateBookingItem)
+router.delete('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.deleteBookingItem)
+
+// Routes with verifyToken
+
+// // quotes routes
+
+// router.get('/quotes', verifyToken, quotesController.getAllQuotes)
+// router.get('/quotes/:id', verifyToken, quotesController.getQuoteById)
+// router.post('/quotes', verifyToken, quotesController.createQuote)
+// router.put('/quotes/:id', verifyToken, quotesController.updateQuote)
+// router.delete('/quotes/:id', verifyToken, quotesController.deleteQuote)
+
+// // bookings routes
+
+// router.get('/bookings', verifyToken, bookingsController.getAllBookings)
+// router.get('/bookings/:id', verifyToken, bookingsController.getBookingById)
+// router.post('/bookings', verifyToken, bookingsController.createBooking)
+// router.put('/bookings/:id', verifyToken, reviews.updateBooking)
+// router.delete('/bookings/:id', verifyToken, bookingsController.deleteBooking)
+
+// // items routes
+
+// router.get('/items', verifyToken, itemsController.getAllItems)
+// router.get('/items/:id', verifyToken, itemsController.getItemById)
+// router.post('/items', verifyToken, itemsController.createItem)
+// router.delete('/items/:id', verifyToken, itemsController.deleteItem)
+
+// // reviews routes
+
+// router.get('/reviews', verifyToken, reviewsController.getAllReviews)
+// router.get('/reviews/:id', verifyToken, reviewsController.getReviewById)
+// router.post('/reviews', verifyToken, reviewsController.createReview)
+// router.put('/reviews/:id', verifyToken, reviewsController.updateReview)
+// router.delete('/reviews/:id', verifyToken, reviewsController.deleteReview)
+
+// //quote_item routes
+
+// router.get('/quote_items', verifyToken, quoteItemsController.getAllQuoteItems)
+// router.post('/quote_items', verifyToken, quoteItemsController.createQuoteItem)
+// router.put('/quote_items/:item_id/:quote_id', verifyToken, quoteItemsController.updateQuoteItem)
+// router.delete('/quote_items/:item_id/:quote_id', verifyToken, quoteItemsController.deleteQuoteItem)
+
+// //booking_item routes
+
+// router.get('/booking_items', verifyToken, bookingItemsController.getAllBookingItems)
+// router.post('/booking_items', verifyToken, bookingItemsController.createBookingItem)
+// router.put('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.updateBookingItem)
+// router.delete('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.deleteBookingItem)
+
+//auth routes
+
+router.post('/login', auth.login)
+
+//admin routes
+
+router.get('/admin', admin.getAdmin)
+router.put('/admin/:id', admin.updateAdmin)
 
 module.exports = router
