@@ -11,9 +11,6 @@ module.exports = {
       subject: {
         type: Sequelize.STRING
       },
-      subject: {
-        type: Sequelize.STRING
-      },
       text: {
         type: Sequelize.TEXT
       },

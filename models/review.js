@@ -14,7 +14,24 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Review.init({
-    subject: DataTypes.STRING
+    subject: {
+      type: Sequelize.STRING
+    },
+    text: {
+      type: Sequelize.TEXT
+    },
+    name: {
+      type: Sequelize.STRING
+    },
+    rating: {
+      type: Sequelize.INTEGER
+    },
+    city: {
+      type: Sequelize.STRING
+    },
+    state: {
+      type: Sequelize.STRING
+    }
   }, {
     sequelize,
     modelName: 'Review',
