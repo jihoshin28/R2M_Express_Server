@@ -1,4 +1,4 @@
-const Card = require('../models/card')
+const Review = require('../models/review')
 
 const getCustomerCards = async(req, res) => {
     console.log(req.params, req.body)
