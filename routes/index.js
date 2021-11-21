@@ -33,28 +33,29 @@ router.delete('/bookings/:id', bookingsController.deleteBooking)
 // items routes
 
 router.get('/items', itemsController.getAllItems)
-router.get('/items/:id', itemsController.getItemById)
+router.get('/items/:id', itemsController.getItem)
 router.post('/items', itemsController.createItem)
+router.post('/items/:id', itemsController.updateItem)
 router.delete('/items/:id', itemsController.deleteItem)
 
 // reviews routes
 
 router.get('/reviews', reviewsController.getAllReviews)
-router.get('/reviews/:id', reviewsController.getReviewById)
+router.get('/reviews/:id', reviewsController.getReview)
 router.post('/reviews', reviewsController.createReview)
 router.put('/reviews/:id', reviewsController.updateReview)
 router.delete('/reviews/:id', reviewsController.deleteReview)
 
 //quote_item routes
 
-router.get('/quote_items', quoteItemsController.getAllQuoteItems)
+router.get('/quote_items/:quote_id', quoteItemsController.getAllQuoteItemsByQuote)
 router.post('/quote_items', quoteItemsController.createQuoteItem)
 router.put('/quote_items/:item_id/:quote_id', quoteItemsController.updateQuoteItem)
 router.delete('/quote_items/:item_id/:quote_id', quoteItemsController.deleteQuoteItem)
 
 //booking_item routes
 
-router.get('/booking_items', bookingItemsController.getAllBookingItems)
+router.get('/booking_items/:booking_id', bookingItemsController.getAllBookingItemsByBooking)
 router.post('/booking_items', bookingItemsController.createBookingItem)
 router.put('/booking_items/:item_id/:booking_id', bookingItemsController.updateBookingItem)
 router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.deleteBookingItem)

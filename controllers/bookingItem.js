@@ -1,5 +1,15 @@
 const models = require('../models')
 
+const getAllBookingItemsByBooking = async(req, res) => {
+    console.log(req.params.id)
+    await models.BookingItem.findAll({ where: {booking_id: req.params.booking_id}}, (err, bookingItems) => {
+        if(err) {
+            return res.send(err).status(500)
+        }
+        res.json(bookingItems).status(200)
+    })
+}
+
 const createBookingItem = async(req, res) => {
     await models.BookingItem.create(req.body.BookingItemInfo, (err, newBookingItem) => {
         if(err){
@@ -28,7 +38,7 @@ const deleteBookingItem = async(req, res) => {
 }
 
 module.exports = {
-    getAllBookingItemsForBooking,
+    getAllBookingItemsByBooking,
     createBookingItem,
     updateBookingItem,
     deleteBookingItem

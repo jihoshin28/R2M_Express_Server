@@ -1,22 +1,12 @@
 const models = require('../models')
 
-const getAllQuoteItems = async(req, res) => {
+const getAllQuoteItemsByQuote = async(req, res) => {
     console.log(req.params.id)
-    await models.QuoteItem.findAll({}, (err, quoteItems) => {
+    await models.QuoteItem.findAll({ where: {quote_id: req.params.quote_id}}, (err, quoteItems) => {
         if(err) {
             return res.send(err).status(500)
         }
         res.json(quoteItems).status(200)
-    })
-}
-
-const getQuoteItem = async(req, res) => {
-    console.log(req.params.id)
-    await models.QuoteItem.find({_id: req.params.id}, (err, quoteItem) => {
-        if(err) {
-            return res.send(err).status(500)
-        }
-        res.json(quoteItem).status(200)
     })
 }
 
@@ -48,7 +38,7 @@ const deleteQuoteItem = async(req, res) => {
 }
 
 module.exports = {
-    getAllQuoteItemsForQuote,
+    getAllQuoteItemsByQuote,
     createQuoteItem,
     updateQuoteItem,
     deleteQuoteItem
