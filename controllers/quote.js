@@ -1,8 +1,8 @@
-const Quote = require('../models/quote')
+const models = require('../models')
 
 const getAllQuotes= async(req, res) => {
     console.log(req.params.id)
-    Quote.findAll({}, (err, quotes) => {
+    models.Quote.findAll({}, (err, quotes) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -12,7 +12,7 @@ const getAllQuotes= async(req, res) => {
 
 const getQuote= async(req, res) => {
     console.log(req.params.id)
-    Quote.find({_id: req.params.id}, (err, quote) => {
+    models.Quote.find({_id: req.params.id}, (err, quote) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -22,18 +22,8 @@ const getQuote= async(req, res) => {
 
 const createQuote = async(req, res) => {
     try{
-        let data = req.body
         res.header('Content-Type', 'application/json')
-        const newQuote = new Quote({
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            move_size: data.move_size,
-            weight_total: data.weight_total,
-            price_total: data.price_total,
-            comments: data.comments,
-            
-        })
+        const newQuote = await models.Quote.create(req.body.quoteInfo)
         newQuote.save((err) => {
             if(err) throw err
         }) 

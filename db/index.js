@@ -1,15 +1,13 @@
-const dbConfig = require('./dbConfig')
-
 const Sequelize = require('sequelize')
-const sequelize = new Sequelize(dbConfig.DB, dbConfig.USER, dbConfig.PASSWORD, {
-    host: dbConfig.HOST,
-    dialect: dbConfig.dialect,
+const sequelize = new Sequelize('upack_haulers', 'allen', 'jeeho123', {
+    host: 'localhost',
+    dialect: 'postgres',
     operatorAliases: false,
     pool: {
-        max: dbConfig.pool.max,
-        min: dbConfig.pool.min,
-        acquire: dbConfig.pool.acquire,
-        idle: dbConfig.pool.idle
+        max: 10,
+        min: 0,
+        acquire: 30000,
+        idle: 10000
     }
 })
 // async function tryConnection () {
