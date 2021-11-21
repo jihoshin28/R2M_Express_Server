@@ -17,7 +17,7 @@ router.get('/', (req, res) => res.send('Welcome to UpackHaulers!'))
 // quotes routes
 
 router.get('/quotes', quotesController.getAllQuotes)
-router.get('/quotes/:id', quotesController.getQuoteById)
+router.get('/quotes/:id', quotesController.getQuote)
 router.post('/quotes', quotesController.createQuote)
 router.put('/quotes/:id', quotesController.updateQuote)
 router.delete('/quotes/:id', quotesController.deleteQuote)
