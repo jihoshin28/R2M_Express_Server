@@ -1,8 +1,8 @@
-const Booking = require('../models/booking')
+const models = require('../models')
 
 const getAllBookings= async(req, res) => {
     console.log(req.params.id)
-    Booking.findAll({}, (err, bookings) => {
+    await models.Booking.findAll({}, (err, bookings) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -12,7 +12,7 @@ const getAllBookings= async(req, res) => {
 
 const getBooking= async(req, res) => {
     console.log(req.params.id)
-    Booking.find({_id: req.params.id}, (err, booking) => {
+    await models.Booking.find({_id: req.params.id}, (err, booking) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -21,49 +21,30 @@ const getBooking= async(req, res) => {
 }
 
 const createBooking = async(req, res) => {
-    try{
-        let data = req.body
-        res.header('Content-Type', 'application/json')
-        const newBooking = new Booking({
-            name: data.name,
-            email: data.email,
-            phone: data.phone,
-            move_size: data.move_size,
-            weight_total: data.weight_total,
-            price_total: data.price_total,
-            comments: data.comments,
-            
-        })
-        newBooking.save((err) => {
-            if(err) throw err
-        }) 
-        
+    await models.Booking.create(req.body.BookingInfo, (err, newBooking) => {
+        if(err){
+            return res.send(err).status(500)
+        }
         res.json(newBooking).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    })
 }
 
 const updateBooking = async(req, res) => {
-    try{
-        const booking = Booking.find({_id: req.params.id})
- 
-        booking.save((err) => {
-            if(err) throw err
-        }) 
-        res.send(`Removed user with user id ${req.body.user_id} from chat.`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    await models.Booking.update(req.body.BookingInfo, (err, updatedBooking) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(updatedBooking).status(200)
+    })
 }
 
 const deleteBooking = async(req, res) => {
-    try{
-        Booking.delete({_id: req.params.id})
-        res.send(`Deleted contact with id ${req.params.id}`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    await models.Booking.delete(req.body.BookingInfo, (err, deletedBooking) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(deletedBooking).status(200)
+    })
 }
 
 module.exports = {
