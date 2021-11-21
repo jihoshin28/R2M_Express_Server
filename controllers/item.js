@@ -1,6 +1,6 @@
 const models = require('../models')
 
-const getAllItems= async(req, res) => {
+const getAllItems = async(req, res) => {
     console.log(req.params.id)
     await models.Item.findAll({}, (err, items) => {
         if(err) {
@@ -10,7 +10,7 @@ const getAllItems= async(req, res) => {
     })
 }
 
-const getItem= async(req, res) => {
+const getItem = async(req, res) => {
     console.log(req.params.id)
     await models.Item.find({_id: req.params.id}, (err, item) => {
         if(err) {

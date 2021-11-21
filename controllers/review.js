@@ -1,6 +1,6 @@
 const models = require('../models')
 
-const getAllReviews= async(req, res) => {
+const getAllReviews = async(req, res) => {
     console.log(req.params.id)
     await models.Review.findAll({}, (err, reviews) => {
         if(err) {
@@ -10,7 +10,7 @@ const getAllReviews= async(req, res) => {
     })
 }
 
-const getReview= async(req, res) => {
+const getReview = async(req, res) => {
     console.log(req.params.id)
     await models.Review.find({_id: req.params.id}, (err, review) => {
         if(err) {

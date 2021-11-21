@@ -1,6 +1,6 @@
 const models = require('../models')
 
-const getAllQuoteItems= async(req, res) => {
+const getAllQuoteItems = async(req, res) => {
     console.log(req.params.id)
     await models.QuoteItem.findAll({}, (err, quoteItems) => {
         if(err) {
@@ -10,7 +10,7 @@ const getAllQuoteItems= async(req, res) => {
     })
 }
 
-const getQuoteItem= async(req, res) => {
+const getQuoteItem = async(req, res) => {
     console.log(req.params.id)
     await models.QuoteItem.find({_id: req.params.id}, (err, quoteItem) => {
         if(err) {
@@ -48,8 +48,7 @@ const deleteQuoteItem = async(req, res) => {
 }
 
 module.exports = {
-    getAllQuoteItems,
-    getQuoteItem,
+    getAllQuoteItemsForQuote,
     createQuoteItem,
     updateQuoteItem,
     deleteQuoteItem

@@ -1,6 +1,6 @@
 const models = require('../models')
 
-const getAllBookings= async(req, res) => {
+const getAllBookings = async(req, res) => {
     console.log(req.params.id)
     await models.Booking.findAll({}, (err, bookings) => {
         if(err) {
@@ -10,7 +10,7 @@ const getAllBookings= async(req, res) => {
     })
 }
 
-const getBooking= async(req, res) => {
+const getBooking = async(req, res) => {
     console.log(req.params.id)
     await models.Booking.find({_id: req.params.id}, (err, booking) => {
         if(err) {

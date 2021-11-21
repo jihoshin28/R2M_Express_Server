@@ -1,6 +1,6 @@
 const models = require('../models')
 
-const getAllQuotes= async(req, res) => {
+const getAllQuotes = async(req, res) => {
     console.log(req.params.id)
     await models.Quote.findAll({}, (err, quotes) => {
         if(err) {
@@ -10,7 +10,7 @@ const getAllQuotes= async(req, res) => {
     })
 }
 
-const getQuote= async(req, res) => {
+const getQuote = async(req, res) => {
     console.log(req.params.id)
     await models.Quote.find({_id: req.params.id}, (err, quote) => {
         if(err) {
