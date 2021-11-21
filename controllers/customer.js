@@ -1,67 +1,56 @@
-const Customer = require('../models/customer')
+const models = require('../models')
 
-const getCustomer = async(req, res) => {
-    console.log(req)
-    await Customer.find({_id: req.params.id}, (err, customer) => {
+const getAllQuoteItems= async(req, res) => {
+    console.log(req.params.id)
+    await models.QuoteItem.findAll({}, (err, quoteItems) => {
         if(err) {
             return res.send(err).status(500)
         }
-        res.json(customer).status(200)
+        res.json(quoteItems).status(200)
     })
 }
 
-const createCustomer = async(req, res) => {
-    try{
-        let data = req.body
-        res.header('Content-Type', 'application/json')
-        const newCustomer = new Customer({
-            first_name: data.first_name,
-            last_name: data.last_name,
-            email: data.email,
-            phone: data.phone,
-            orders: [],
-            contacts: []
-        })
-        newCustomer.save((err) => {
-            if(err) throw err
-        }) 
-
-        res.json({newCustomer}).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
-}
-
-const updateCustomer = async(req, res) => {
-    try{
-        const customer = Customer.find({_id: req.params.id})
-        let updatedKeys = Object.keys(req.body)
-
-        for(let i = 0; i < updatedKeys.length; i++){
-            customer[updatedKeys[i]] = req.body[updatedKeys[i]]
+const getQuoteItem= async(req, res) => {
+    console.log(req.params.id)
+    await models.QuoteItem.find({_id: req.params.id}, (err, quoteItem) => {
+        if(err) {
+            return res.send(err).status(500)
         }
-
-        customer.save((err) => {
-            if(err) throw err
-        }) 
-        res.send(`Updated customer with id ${req.params.id}.`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+        res.json(quoteItem).status(200)
+    })
 }
 
-const deleteCustomer = async(req, res) => {
-    try{
-        Customer.delete({_id: req.params.id})
-        res.send(`Deleted customer with id ${req.params.id}`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+const createQuoteItem = async(req, res) => {
+    await models.QuoteItem.create(req.body.QuoteItemInfo, (err, newQuoteItem) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(newQuoteItem).status(200)
+    })
+}
+
+const updateQuoteItem = async(req, res) => {
+    await models.QuoteItem.update(req.body.QuoteItemInfo, (err, updatedQuoteItem) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(updatedQuoteItem).status(200)
+    })
+}
+
+const deleteQuoteItem = async(req, res) => {
+    await models.QuoteItem.delete(req.body.QuoteItemInfo, (err, deletedQuoteItem) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(deletedQuoteItem).status(200)
+    })
 }
 
 module.exports = {
-    getCustomer,
-    createCustomer,
-    updateCustomer,
-    deleteCustomer
+    getAllQuoteItems,
+    getQuoteItem,
+    createQuoteItem,
+    updateQuoteItem,
+    deleteQuoteItem
 }
