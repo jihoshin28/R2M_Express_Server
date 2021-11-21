@@ -15,13 +15,13 @@ module.exports = (sequelize, DataTypes) => {
   };
   QuoteItem.init({
     quantity: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     item_id: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     quote_id: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
   }, {
     sequelize,

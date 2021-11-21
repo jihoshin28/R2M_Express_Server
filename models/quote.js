@@ -20,25 +20,25 @@ module.exports = (sequelize, DataTypes) => {
   };
   Quote.init({
     name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     email: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     phone: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     move_size: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     weight_total: {
-      type: Sequelize.FLOAT
+      type: DataTypes.FLOAT
     },
     price_total: {
-      type: Sequelize.FLOAT
+      type: DataTypes.FLOAT
     },
     comments: {
-      type: Sequelize.TEXT
+      type: DataTypes.TEXT
     },
   }, {
     sequelize,

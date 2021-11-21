@@ -15,22 +15,22 @@ module.exports = (sequelize, DataTypes) => {
   };
   Review.init({
     subject: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     text: {
-      type: Sequelize.TEXT
+      type: DataTypes.TEXT
     },
     name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     rating: {
-      type: Sequelize.INTEGER
+      type: DataTypes.INTEGER
     },
     city: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     state: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     }
   }, {
     sequelize,

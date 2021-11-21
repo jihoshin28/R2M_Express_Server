@@ -20,61 +20,61 @@ module.exports = (sequelize, DataTypes) => {
   };
   Booking.init({
     name: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     email: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     phone: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     move_size: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     weight_total: {
-      type: Sequelize.FLOAT
+      type: DataTypes.FLOAT
     },
     price_total: {
-      type: Sequelize.FLOAT
+      type: DataTypes.FLOAT
     },
     comment: {
-      type: Sequelize.TEXT
+      type: DataTypes.TEXT
     },
     start_time: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     start_date: {
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     start_address: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     start_city: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     start_state: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     start_zip: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     delivery_time: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     delivery_date: {
-      type: Sequelize.DATE
+      type: DataTypes.DATE
     },
     delivery_address: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     delivery_city: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     delivery_state: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
     delivery_zip: {
-      type: Sequelize.STRING
+      type: DataTypes.STRING
     },
   }, {
     sequelize,
