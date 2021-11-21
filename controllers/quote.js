@@ -2,7 +2,7 @@ const models = require('../models')
 
 const getAllQuotes= async(req, res) => {
     console.log(req.params.id)
-    models.Quote.findAll({}, (err, quotes) => {
+    await models.Quote.findAll({}, (err, quotes) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -12,7 +12,7 @@ const getAllQuotes= async(req, res) => {
 
 const getQuote= async(req, res) => {
     console.log(req.params.id)
-    models.Quote.find({_id: req.params.id}, (err, quote) => {
+    await models.Quote.find({_id: req.params.id}, (err, quote) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -21,39 +21,30 @@ const getQuote= async(req, res) => {
 }
 
 const createQuote = async(req, res) => {
-    try{
-        res.header('Content-Type', 'application/json')
-        const newQuote = await models.Quote.create(req.body.quoteInfo)
-        newQuote.save((err) => {
-            if(err) throw err
-        }) 
-        
+    await models.Quote.create(req.body.QuoteInfo, (err, newQuote) => {
+        if(err){
+            return res.send(err).status(500)
+        }
         res.json(newQuote).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    })
 }
 
 const updateQuote = async(req, res) => {
-    try{
-        const quote = Quote.find({_id: req.params.id})
- 
-        quote.save((err) => {
-            if(err) throw err
-        }) 
-        res.send(`Removed user with user id ${req.body.user_id} from chat.`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    await models.Quote.update(req.body.QuoteInfo, (err, updatedQuote) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(updatedQuote).status(200)
+    })
 }
 
 const deleteQuote = async(req, res) => {
-    try{
-        Quote.delete({_id: req.params.id})
-        res.send(`Deleted contact with id ${req.params.id}`).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
+    await models.Quote.delete(req.body.QuoteInfo, (err, deletedQuote) => {
+        if(err){
+            return res.send(err).status(500)
+        }
+        res.json(deletedQuote).status(200)
+    })
 }
 
 module.exports = {
