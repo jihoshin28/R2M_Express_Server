@@ -12,7 +12,7 @@ const getAllReviews = async(req, res) => {
 
 const getReview = async(req, res) => {
     console.log(req.params.id)
-    await models.Review.find({_id: req.params.id}, (err, review) => {
+    await models.Review.findOne({_id: req.params.id}, (err, review) => {
         if(err) {
             return res.send(err).status(500)
         }

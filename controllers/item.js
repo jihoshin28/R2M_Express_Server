@@ -1,8 +1,9 @@
 const models = require('../models')
 
 const getAllItems = async(req, res) => {
-    console.log(req.params.id)
+    console.log(req)
     await models.Item.findAll({}, (err, items) => {
+        console.log(err)
         if(err) {
             return res.send(err).status(500)
         }
@@ -12,7 +13,7 @@ const getAllItems = async(req, res) => {
 
 const getItem = async(req, res) => {
     console.log(req.params.id)
-    await models.Item.find({_id: req.params.id}, (err, item) => {
+    await models.Item.findOne({_id: req.params.id}, (err, item) => {
         if(err) {
             return res.send(err).status(500)
         }

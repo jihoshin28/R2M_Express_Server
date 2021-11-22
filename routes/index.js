@@ -11,7 +11,7 @@ const bookingItemsController = require('../controllers/bookingItem')
 
 const router = Router()
 
-console.log(verifyToken, 'verifyToken')
+// console.log(verifyToken, 'verifyToken')
 router.get('/', (req, res) => res.send('Welcome to UpackHaulers!'))
 
 // quotes routes
@@ -60,6 +60,17 @@ router.post('/booking_items', bookingItemsController.createBookingItem)
 router.put('/booking_items/:item_id/:booking_id', bookingItemsController.updateBookingItem)
 router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.deleteBookingItem)
 
+console.log(router.stack, "available api routes")
+
+//auth routes
+
+// router.post('/login', auth.login)
+
+//admin routes
+
+// router.get('/admin', admin.getAdmin)
+// router.put('/admin/:id', admin.updateAdmin)
+
 // Routes with verifyToken
 
 // // quotes routes
@@ -106,14 +117,5 @@ router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.dele
 // router.post('/booking_items', verifyToken, bookingItemsController.createBookingItem)
 // router.put('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.updateBookingItem)
 // router.delete('/booking_items/:item_id/:booking_id', verifyToken, bookingItemsController.deleteBookingItem)
-
-//auth routes
-
-router.post('/login', auth.login)
-
-//admin routes
-
-router.get('/admin', admin.getAdmin)
-router.put('/admin/:id', admin.updateAdmin)
 
 module.exports = router

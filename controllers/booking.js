@@ -12,7 +12,7 @@ const getAllBookings = async(req, res) => {
 
 const getBooking = async(req, res) => {
     console.log(req.params.id)
-    await models.Booking.find({_id: req.params.id}, (err, booking) => {
+    await models.Booking.findOne({_id: req.params.id}, (err, booking) => {
         if(err) {
             return res.send(err).status(500)
         }

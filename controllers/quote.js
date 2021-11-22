@@ -12,7 +12,7 @@ const getAllQuotes = async(req, res) => {
 
 const getQuote = async(req, res) => {
     console.log(req.params.id)
-    await models.Quote.find({_id: req.params.id}, (err, quote) => {
+    await models.Quote.findOne({_id: req.params.id}, (err, quote) => {
         if(err) {
             return res.send(err).status(500)
         }
@@ -21,6 +21,7 @@ const getQuote = async(req, res) => {
 }
 
 const createQuote = async(req, res) => {
+    console.log(req.body.quoteInfo)
     await models.Quote.create(req.body.QuoteInfo, (err, newQuote) => {
         if(err){
             return res.send(err).status(500)
