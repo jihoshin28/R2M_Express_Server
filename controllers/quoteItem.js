@@ -1,40 +1,33 @@
 const models = require('../models')
 
 const getAllQuoteItemsByQuote = async(req, res) => {
-    console.log(req.params.id)
-    await models.QuoteItem.findAll({ where: {quote_id: req.params.quote_id}}, (err, quoteItems) => {
-        if(err) {
-            return res.send(err).status(500)
+    let quoteItems = await models.QuoteItem.findAll({
+        where: {
+            quote_id: req.body.quoteItemId
         }
-        res.json(quoteItems).status(200)
     })
+    if(quoteItems.length === 0){
+        return res.json({"status": "There are no quote Items."}).status(200)
+    }
+    return res.json(quoteItems).status(200)
 }
 
 const createQuoteItem = async(req, res) => {
-    await models.QuoteItem.create(req.body.QuoteItemInfo, (err, newQuoteItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(newQuoteItem).status(200)
-    })
+    console.log(req.body.quoteItemInfo)
+    const newQuoteItem = await models.QuoteItem.create(req.body.quoteItemInfo)
+    // need to add validator logic
+    console.log(newQuoteItem)
+    res.json(newQuoteItem).status(200)
 }
 
 const updateQuoteItem = async(req, res) => {
-    await models.QuoteItem.update(req.body.QuoteItemInfo, (err, updatedQuoteItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(updatedQuoteItem).status(200)
-    })
+    const updatedQuoteItem = await models.QuoteItem.update(req.body.quoteItemInfo)
+    console.log(updatedQuoteItem)
+    res.json(updatedQuoteItem).status(200)
 }
 
 const deleteQuoteItem = async(req, res) => {
-    await models.QuoteItem.delete(req.body.QuoteItemInfo, (err, deletedQuoteItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(deletedQuoteItem).status(200)
-    })
+    // await models.QuoteItem.destroy(req.params.id)
 }
 
 module.exports = {
