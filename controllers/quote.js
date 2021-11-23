@@ -27,21 +27,19 @@ const getQuote = async(req, res) => {
 const createQuote = async(req, res) => {
     console.log(req.body.quoteInfo)
     const newQuote = await models.Quote.create(req.body.quoteInfo)
+    // need to add validator logic
     console.log(newQuote)
+    res.json(newQuote).status(200)
 }
 
 const updateQuote = async(req, res) => {
-
     const updatedQuote = await models.Quote.update(req.body.quoteInfo)
+    console.log(updatedQuote)
+    res.json(newQuote).status(200)
 }
 
 const deleteQuote = async(req, res) => {
-    await models.Quote.delete(req.body.QuoteInfo, (err, deletedQuote) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(deletedQuote).status(200)
-    })
+    // await models.Quote.destroy(req.params.id)
 }
 
 module.exports = {
