@@ -1,40 +1,33 @@
 const models = require('../models')
 
 const getAllBookingItemsByBooking = async(req, res) => {
-    console.log(req.params.id)
-    await models.BookingItem.findAll({ where: {booking_id: req.params.booking_id}}, (err, bookingItems) => {
-        if(err) {
-            return res.send(err).status(500)
+    let bookingItems = await models.BookingItem.findAll({
+        where: {
+            booking_id: req.body.bookingItemId
         }
-        res.json(bookingItems).status(200)
     })
+    if(bookingItems.length === 0){
+        return res.json({"status": "There are no booking items."}).status(200)
+    }
+    return res.json(bookingItems).status(200)
 }
 
 const createBookingItem = async(req, res) => {
-    await models.BookingItem.create(req.body.BookingItemInfo, (err, newBookingItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(newBookingItem).status(200)
-    })
+    console.log(req.body.bookingItemInfo)
+    const newBookingItem = await models.BookingItem.create(req.body.bookingItemInfo)
+    // need to add validator logic
+    console.log(newBookingItem)
+    res.json(newBookingItem).status(200)
 }
 
 const updateBookingItem = async(req, res) => {
-    await models.BookingItem.update(req.body.BookingItemInfo, (err, updatedBookingItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(updatedBookingItem).status(200)
-    })
+    const updatedBookingItem = await models.BookingItem.update(req.body.bookingItemInfo)
+    console.log(updatedBookingItem)
+    res.json(updatedBookingItem).status(200)
 }
 
 const deleteBookingItem = async(req, res) => {
-    await models.BookingItem.delete(req.body.BookingItemInfo, (err, deletedBookingItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(deletedBookingItem).status(200)
-    })
+    // await models.BookingItem.destroy(req.params.id)
 }
 
 module.exports = {
