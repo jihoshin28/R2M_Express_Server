@@ -35,7 +35,7 @@ const createQuote = async(req, res) => {
 const updateQuote = async(req, res) => {
     const updatedQuote = await models.Quote.update(req.body.quoteInfo)
     console.log(updatedQuote)
-    res.json(newQuote).status(200)
+    res.json(updatedQuote).status(200)
 }
 
 const deleteQuote = async(req, res) => {
