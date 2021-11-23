@@ -22,28 +22,27 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        allowNull: false,
-        isAlpha: true
-      }
+        notNull: false,
+      },
     },
     email: {
       type: DataTypes.STRING,
       validate: {
-        allowNull: false,
+        notNull: false,
         isEmail: true
       }
     },
     phone: {
       type: DataTypes.STRING,
       validate: {
-        allowNull: false,
-        len: [10]
+        notNull: false,
+        // len: [10, 10]
       }
     },
     move_size: {
       type: DataTypes.STRING, 
       validate:{
-        allowNull: false
+        notNull: false
       }
     },
     weight_total: {
