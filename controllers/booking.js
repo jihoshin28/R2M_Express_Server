@@ -1,50 +1,45 @@
 const models = require('../models')
 
 const getAllBookings = async(req, res) => {
-    console.log(req.params.id)
-    await models.Booking.findAll({}, (err, bookings) => {
-        if(err) {
-            return res.send(err).status(500)
-        }
-        res.json(bookings).status(200)
-    })
+    let bookings = await models.Booking.findAll()
+    if(bookings.length === 0){
+        return res.json({"status": "There are no bookings."}).status(200)
+    }
+    return res.json(bookings).status(200)
 }
 
 const getBooking = async(req, res) => {
     console.log(req.params.id)
-    await models.Booking.findOne({_id: req.params.id}, (err, booking) => {
-        if(err) {
-            return res.send(err).status(500)
+    let booking = await models.Booking.findOne({
+        where: {
+            id: req.params.id
         }
-        res.json(booking).status(200)
     })
+
+    if(!booking){
+        return res.json({"error": "Booking not found"}).status(200)
+    } else {
+        return res.json(booking).status(200)
+    }
+
 }
 
 const createBooking = async(req, res) => {
-    await models.Booking.create(req.body.BookingInfo, (err, newBooking) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(newBooking).status(200)
-    })
+    console.log(req.body.bookingInfo)
+    const newBooking = await models.Booking.create(req.body.bookingInfo)
+    // need to add validator logic
+    console.log(newBooking)
+    res.json(newBooking).status(200)
 }
 
 const updateBooking = async(req, res) => {
-    await models.Booking.update(req.body.BookingInfo, (err, updatedBooking) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(updatedBooking).status(200)
-    })
+    const updatedBooking = await models.Booking.update(req.body.bookingInfo)
+    console.log(updatedBooking)
+    res.json(updatedBooking).status(200)
 }
 
 const deleteBooking = async(req, res) => {
-    await models.Booking.delete(req.body.BookingInfo, (err, deletedBooking) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(deletedBooking).status(200)
-    })
+    // await models.Booking.destroy(req.params.id)
 }
 
 module.exports = {
