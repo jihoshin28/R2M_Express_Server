@@ -1,42 +1,38 @@
 const models = require('../models')
 
 const getAllQuotes = async(req, res) => {
-    console.log(req.params.id)
-    await models.Quote.findAll({}, (err, quotes) => {
-        if(err) {
-            return res.send(err).status(500)
-        }
-        res.json(quotes).status(200)
-    })
+    let quotes = await models.Quote.findAll()
+    if(quotes.length === 0){
+        return res.json({"status": "There are no quotes."}).status(200)
+    }
+    return res.json(quotes).status(200)
 }
 
 const getQuote = async(req, res) => {
     console.log(req.params.id)
-    await models.Quote.findOne({_id: req.params.id}, (err, quote) => {
-        if(err) {
-            return res.send(err).status(500)
+    let quote = await models.Quote.findOne({
+        where: {
+            id: req.params.id
         }
-        res.json(quote).status(200)
     })
+
+    if(!quote){
+        return res.json({"error": "Quote not found"}).status(200)
+    } else {
+        return res.json(quote).status(200)
+    }
+
 }
 
 const createQuote = async(req, res) => {
     console.log(req.body.quoteInfo)
-    await models.Quote.create(req.body.QuoteInfo, (err, newQuote) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(newQuote).status(200)
-    })
+    const newQuote = await models.Quote.create(req.body.quoteInfo)
+    console.log(newQuote)
 }
 
 const updateQuote = async(req, res) => {
-    await models.Quote.update(req.body.QuoteInfo, (err, updatedQuote) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(updatedQuote).status(200)
-    })
+
+    const updatedQuote = await models.Quote.update(req.body.quoteInfo)
 }
 
 const deleteQuote = async(req, res) => {
