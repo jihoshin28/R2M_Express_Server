@@ -1,51 +1,45 @@
 const models = require('../models')
 
 const getAllItems = async(req, res) => {
-    console.log(req)
-    await models.Item.findAll({}, (err, items) => {
-        console.log(err)
-        if(err) {
-            return res.send(err).status(500)
-        }
-        res.json(items).status(200)
-    })
+    let items = await models.Item.findAll()
+    if(items.length === 0){
+        return res.json({"status": "There are no Items."}).status(200)
+    }
+    return res.json(items).status(200)
 }
 
 const getItem = async(req, res) => {
     console.log(req.params.id)
-    await models.Item.findOne({_id: req.params.id}, (err, item) => {
-        if(err) {
-            return res.send(err).status(500)
+    let item = await models.Item.findOne({
+        where: {
+            id: req.params.id
         }
-        res.json(item).status(200)
     })
+
+    if(!item){
+        return res.json({"error": "Item not found"}).status(200)
+    } else {
+        return res.json(item).status(200)
+    }
+
 }
 
 const createItem = async(req, res) => {
-    await models.Item.create(req.body.itemInfo, (err, newItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(newItem).status(200)
-    })
+    console.log(req.body.itemInfo)
+    const newItem = await models.Item.create(req.body.itemInfo)
+    // need to add validator logic
+    console.log(newItem)
+    res.json(newItem).status(200)
 }
 
 const updateItem = async(req, res) => {
-    await models.Item.update(req.body.itemInfo, (err, updatedItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(updatedItem).status(200)
-    })
+    const updatedItem = await models.Item.update(req.body.itemInfo)
+    console.log(updatedItem)
+    res.json(updatedItem).status(200)
 }
 
 const deleteItem = async(req, res) => {
-    await models.Item.delete(req.body.itemInfo, (err, deletedItem) => {
-        if(err){
-            return res.send(err).status(500)
-        }
-        res.json(deletedItem).status(200)
-    })
+    // await models.Item.destroy(req.params.id)
 }
 
 module.exports = {
