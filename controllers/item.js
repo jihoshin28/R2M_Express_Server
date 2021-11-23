@@ -3,7 +3,7 @@ const models = require('../models')
 const getAllItems = async(req, res) => {
     let items = await models.Item.findAll()
     if(items.length === 0){
-        return res.json({"status": "There are no Items."}).status(200)
+        return res.json({"status": "There are no items."}).status(200)
     }
     return res.json(items).status(200)
 }
