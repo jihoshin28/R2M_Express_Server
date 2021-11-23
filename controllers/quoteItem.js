@@ -7,7 +7,7 @@ const getAllQuoteItemsByQuote = async(req, res) => {
         }
     })
     if(quoteItems.length === 0){
-        return res.json({"status": "There are no quote Items."}).status(200)
+        return res.json({"status": "There are no quote items."}).status(200)
     }
     return res.json(quoteItems).status(200)
 }
