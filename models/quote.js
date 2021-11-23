@@ -20,16 +20,31 @@ module.exports = (sequelize, DataTypes) => {
   };
   Quote.init({
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        allowNull: false,
+        isAlpha: true
+      }
     },
     email: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        allowNull: false,
+        isEmail: true
+      }
     },
     phone: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        allowNull: false,
+        len: [10]
+      }
     },
     move_size: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING, 
+      validate:{
+        allowNull: false
+      }
     },
     weight_total: {
       type: DataTypes.FLOAT
