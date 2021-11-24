@@ -26,10 +26,14 @@ const getQuote = async(req, res) => {
 
 const createQuote = async(req, res) => {
     console.log(req.body.quoteInfo)
-    const newQuote = await models.Quote.create(req.body.quoteInfo)
+    try {
+        const newQuote = await models.Quote.create(req.body.quoteInfo)
+        res.send(newQuote).status(200)
+    } catch(err) {
+        res.send(err).status(500)
+    }
     // need to add validator logic
-    console.log(newQuote)
-    res.json(newQuote).status(200)
+    // res.json(newQuote).status(200)
 }
 
 const updateQuote = async(req, res) => {

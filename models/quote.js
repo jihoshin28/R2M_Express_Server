@@ -22,7 +22,25 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
+        
         notNull: false,
+        isName(value){
+          let checkChars = (val) => {
+            for(let i = 0; i < val.length; i++){
+              if(!(/[a-zA-Z]/).test(val[i])){
+                console.log(val[i], typeof val[i])
+                throw new Error('Not a proper name')
+              }
+            }
+          } 
+          
+          let nameArray = value.split(' ')
+
+          nameArray.forEach(char => {
+            checkChars(char)
+          })
+
+        }
       },
     },
     email: {
@@ -35,8 +53,8 @@ module.exports = (sequelize, DataTypes) => {
     phone: {
       type: DataTypes.STRING,
       validate: {
-        notNull: false,
-        // len: [10, 10]
+        len: [10, 10],
+        notNull: false
       }
     },
     move_size: {
