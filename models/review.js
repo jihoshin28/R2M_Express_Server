@@ -16,26 +16,22 @@ module.exports = (sequelize, DataTypes) => {
   Review.init({
     subject: {
       type: DataTypes.STRING,
-      validate: {
-        notNull: false
-      }
+      allowNull: false
     },
     text: {
       type: DataTypes.TEXT,
-      validate: {
-        notNull: false
-      }
+      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: false,
         isName(value){
           let checkChars = (val) => {
             for(let i = 0; i < val.length; i++){
               if(!(/[a-zA-Z]/).test(val[i])){
                 console.log(val[i], typeof val[i])
-                throw new Error('Please enter your full name.')
+                throw new Error('Please enter correctly spelled name.')
               }
             }
           } 
@@ -50,15 +46,15 @@ module.exports = (sequelize, DataTypes) => {
     },
     rating: {
       type: DataTypes.INTEGER,
+      allowNull: false,
       validate: {
-        notNull: false,
         isInt: true
       }
     },
     city: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: false,
         isCity(value){
           let checkChars = (val) => {
             for(let i = 0; i < val.length; i++){
@@ -79,8 +75,8 @@ module.exports = (sequelize, DataTypes) => {
     },
     state: {
       type: DataTypes.STRING, 
+      allowNull: false,
       validate: {
-        notNull: false,
         isAlpha: true,
         len: [2, 2]
       }

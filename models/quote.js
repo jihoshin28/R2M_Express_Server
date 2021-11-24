@@ -21,8 +21,8 @@ module.exports = (sequelize, DataTypes) => {
   Quote.init({
     name: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: false,
         isName(value){
           let checkChars = (val) => {
             for(let i = 0; i < val.length; i++){
@@ -43,22 +43,22 @@ module.exports = (sequelize, DataTypes) => {
     },
     email: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
-        notNull: false,
         isEmail: true
       }
     },
     phone: {
       type: DataTypes.STRING,
+      allowNull: false,
       validate: {
         len: [10, 10],
-        notNull: false
       }
     },
     move_size: {
       type: DataTypes.STRING, 
       validate:{
-        isNotNull(value){
+        isallowNull(value){
           if(value === "Select move size"){
             throw new Error('Please select a move size.')
           }

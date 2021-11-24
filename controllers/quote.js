@@ -31,7 +31,7 @@ const createQuote = async(req, res) => {
         const newQuote = await models.Quote.create(req.body.quoteInfo)
         res.send(newQuote).status(200)
     } catch(err) {
-        res.send(err).status(500)
+        res.send(err).status(400)
     }
     // need to add validator logic
     // res.json(newQuote).status(200)
@@ -44,7 +44,7 @@ const updateQuote = async(req, res) => {
                 id: req.params.id
             }
         })
-        console.log(updatedQuote === null, updatedQuote[0] === 0)
+
         if(updatedQuote[0] === 0){
             throw ({'errors': [
                 {
@@ -55,12 +55,31 @@ const updateQuote = async(req, res) => {
         } 
         res.json({"status": `Quote with id ${updatedQuote[0]} updated.`}).status(200)
     } catch(err){
-        res.send(err).status(500)
+        res.send(err).status(400)
     }
 }
 
 const deleteQuote = async(req, res) => {
-    // await models.Quote.destroy(req.params.id)
+    try {
+        const deletedQuoteId = await models.Quote.destroy({
+            where: {
+              id: req.params.id
+            }
+        });
+
+        if(deletedQuoteId === 0){
+            throw ({'errors': [
+                {
+                    "type": "Null Id",
+                    "message": "No Id with that name"
+                }
+            ]})
+        } 
+        res.json({"status": `Quote with id ${deletedQuoteId} deleted.`})
+    } catch (err){
+        res.send(err).status(400)
+    }
+
 }
 
 module.exports = {

@@ -25,22 +25,57 @@ const getReview = async(req, res) => {
 }
 
 const createReview = async(req, res) => {
+    console.log(req.body.reviewInfo)
     try {
         const newReview = await models.Review.create(req.body.reviewInfo)
         res.send(newReview).status(200)
     } catch(err) {
-        res.send(err).status(500)
+        res.send(err).status(400)
     }
 }
 
 const updateReview = async(req, res) => {
-    const updatedReview = await models.Review.update(req.body.reviewInfo)
-    console.log(updatedReview)
-    res.json(updatedReview).status(200)
+    try {
+        const updatedReview = await models.Review.update(req.body.reviewInfo, {
+            where: {
+                id: req.params.id
+            }
+        })
+
+        if(updatedReview[0] === 0){
+            throw ({'errors': [
+                {
+                    "type": "Null Id",
+                    "message": "No Id with that name"
+                }
+            ]})
+        } 
+        res.json({"status": `Review with id ${updatedReview[0]} updated.`}).status(200)
+    } catch(err){
+        res.send(err).status(400)
+    }
 }
 
 const deleteReview = async(req, res) => {
-    // await models.Review.destroy(req.params.id)
+    try {
+        const deletedReviewId = await models.Review.destroy({
+            where: {
+              id: req.params.id
+            }
+        });
+
+        if(deletedReviewId === 0){
+            throw ({'errors': [
+                {
+                    "type": "Null Id",
+                    "message": "No Id with that name"
+                }
+            ]})
+        } 
+        res.json({"status": `Review with id ${deletedReviewId} deleted.`})
+    } catch (err){
+        res.send(err).status(400)
+    }
 }
 
 module.exports = {
