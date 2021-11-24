@@ -10,16 +10,16 @@ const getAllQuotes = async(req, res) => {
 
 const getQuote = async(req, res) => {
     console.log(req.params.id)
-    let quote = await models.Quote.findOne({
-        where: {
-            id: req.params.id
-        }
-    })
-
-    if(!quote){
-        return res.json({"error": "Quote not found"}).status(200)
-    } else {
-        return res.json(quote).status(200)
+    try {
+        let quote = await models.Quote.findOne({
+            where: {
+                id: req.params.id
+            }
+        })
+        
+        res.json(quote).status(200)
+    } catch(err){
+        res.json({"error": "Quote not found"}).status(200)
     }
 
 }
@@ -37,9 +37,25 @@ const createQuote = async(req, res) => {
 }
 
 const updateQuote = async(req, res) => {
-    const updatedQuote = await models.Quote.update(req.body.quoteInfo)
-    console.log(updatedQuote)
-    res.json(updatedQuote).status(200)
+    try {
+        const updatedQuote = await models.Quote.update(req.body.quoteInfo, {
+            where: {
+                id: req.params.id
+            }
+        })
+        console.log(updatedQuote === null, updatedQuote[0] === 0)
+        if(updatedQuote[0] === 0){
+            throw ({'errors': [
+                {
+                    "type": "Null Id",
+                    "message": "No Id with that name"
+                }
+            ]})
+        } 
+        res.json({"status": `Quote with id ${updatedQuote[0]} updated.`}).status(200)
+    } catch(err){
+        res.send(err).status(500)
+    }
 }
 
 const deleteQuote = async(req, res) => {
