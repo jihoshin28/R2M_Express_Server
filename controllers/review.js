@@ -25,11 +25,12 @@ const getReview = async(req, res) => {
 }
 
 const createReview = async(req, res) => {
-    console.log(req.body.reviewInfo)
-    const newReview = await models.Review.create(req.body.reviewInfo)
-    // need to add validator logic
-    console.log(newReview)
-    res.json(newReview).status(200)
+    try {
+        const newReview = await models.Review.create(req.body.reviewInfo)
+        res.send(newReview).status(200)
+    } catch(err) {
+        res.send(err).status(500)
+    }
 }
 
 const updateReview = async(req, res) => {
