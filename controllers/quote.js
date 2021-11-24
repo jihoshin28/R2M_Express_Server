@@ -10,17 +10,18 @@ const getAllQuotes = async(req, res) => {
 
 const getQuote = async(req, res) => {
     console.log(req.params.id)
-    try {
-        let quote = await models.Quote.findOne({
-            where: {
-                id: req.params.id
-            }
-        })
-        
-        res.json(quote).status(200)
-    } catch(err){
-        res.json({"error": "Quote not found"}).status(200)
+    let quote = await models.Quote.findOne({
+        where: {
+            id: req.params.id
+        }
+    })
+
+    if(!quote){
+        return res.json({"error": "Quote not found"}).status(200)
+    } else {
+        return res.json(quote).status(200)
     }
+
 
 }
 
