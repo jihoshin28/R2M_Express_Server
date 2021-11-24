@@ -15,22 +15,75 @@ module.exports = (sequelize, DataTypes) => {
   };
   Review.init({
     subject: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        notNull: false
+      }
     },
     text: {
-      type: DataTypes.TEXT
+      type: DataTypes.TEXT,
+      validate: {
+        notNull: false
+      }
     },
     name: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        notNull: false,
+        isName(value){
+          let checkChars = (val) => {
+            for(let i = 0; i < val.length; i++){
+              if(!(/[a-zA-Z]/).test(val[i])){
+                console.log(val[i], typeof val[i])
+                throw new Error('Please enter your full name.')
+              }
+            }
+          } 
+          
+          let nameArray = value.split(' ')
+
+          nameArray.forEach(char => {
+            checkChars(char)
+          })
+        }
+      },
     },
     rating: {
-      type: DataTypes.INTEGER
+      type: DataTypes.INTEGER,
+      validate: {
+        notNull: false,
+        isInt: true
+      }
     },
     city: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING,
+      validate: {
+        notNull: false,
+        isCity(value){
+          let checkChars = (val) => {
+            for(let i = 0; i < val.length; i++){
+              if(!(/[a-zA-Z]/).test(val[i])){
+                console.log(val[i], typeof val[i])
+                throw new Error('Please enter your full name.')
+              }
+            }
+          } 
+          
+          let nameArray = value.split(' ')
+
+          nameArray.forEach(char => {
+            checkChars(char)
+          })
+        }
+      },
     },
     state: {
-      type: DataTypes.STRING
+      type: DataTypes.STRING, 
+      validate: {
+        notNull: false,
+        isAlpha: true,
+        len: [2, 2]
+      }
     }
   }, {
     sequelize,
