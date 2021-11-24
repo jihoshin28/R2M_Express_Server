@@ -60,8 +60,6 @@ router.post('/booking_items', bookingItemsController.createBookingItem)
 router.put('/booking_items/:item_id/:booking_id', bookingItemsController.updateBookingItem)
 router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.deleteBookingItem)
 
-console.log(router.stack, "available api routes")
-
 //auth routes
 
 // router.post('/login', auth.login)
