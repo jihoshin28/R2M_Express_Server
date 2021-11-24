@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     name: {
       type: DataTypes.STRING,
       validate: {
-        
         notNull: false,
         isName(value){
           let checkChars = (val) => {
@@ -39,7 +38,6 @@ module.exports = (sequelize, DataTypes) => {
           nameArray.forEach(char => {
             checkChars(char)
           })
-
         }
       },
     },
@@ -65,7 +63,6 @@ module.exports = (sequelize, DataTypes) => {
             throw new Error('Please select a move size.')
           }
         }
-
       }
     },
     weight_total: {
