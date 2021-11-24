@@ -29,7 +29,7 @@ module.exports = (sequelize, DataTypes) => {
             for(let i = 0; i < val.length; i++){
               if(!(/[a-zA-Z]/).test(val[i])){
                 console.log(val[i], typeof val[i])
-                throw new Error('Not a proper name')
+                throw new Error('Please enter your full name.')
               }
             }
           } 
@@ -60,7 +60,12 @@ module.exports = (sequelize, DataTypes) => {
     move_size: {
       type: DataTypes.STRING, 
       validate:{
-        notNull: false
+        isNotNull(value){
+          if(value === "Select move size"){
+            throw new Error('Please select a move size.')
+          }
+        }
+
       }
     },
     weight_total: {
