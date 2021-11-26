@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     start_date: {
       type: DataTypes.DATE
     },
-    start_address: {
+    start_street: {
       type: DataTypes.STRING
     },
     start_city: {
@@ -64,7 +64,7 @@ module.exports = (sequelize, DataTypes) => {
     delivery_date: {
       type: DataTypes.DATE
     },
-    delivery_address: {
+    delivery_street: {
       type: DataTypes.STRING
     },
     delivery_city: {

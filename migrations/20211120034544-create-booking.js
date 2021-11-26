@@ -35,7 +35,7 @@ module.exports = {
       start_date: {
         type: Sequelize.DATE
       },
-      start_address: {
+      start_street: {
         type: Sequelize.STRING
       },
       start_city: {
@@ -53,7 +53,7 @@ module.exports = {
       delivery_date: {
         type: Sequelize.DATE
       },
-      delivery_address: {
+      delivery_street: {
         type: Sequelize.STRING
       },
       delivery_city: {

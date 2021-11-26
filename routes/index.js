@@ -5,6 +5,7 @@ const itemsController = require('../controllers/item')
 const reviewsController = require('../controllers/review')
 const quoteItemsController = require('../controllers/quoteItem')
 const bookingItemsController = require('../controllers/bookingItem')
+const contactsController = require('../controllers/contact')
 // const auth = require('../controllers/auth')
 // const admin = require('../controllers/admin')
 // const verifyToken = require('../middleware/index.js').verifyToken
@@ -45,6 +46,10 @@ router.get('/reviews/:id', reviewsController.getReview)
 router.post('/reviews', reviewsController.createReview)
 router.put('/reviews/:id', reviewsController.updateReview)
 router.delete('/reviews/:id', reviewsController.deleteReview)
+
+//contacts routes
+
+router.post('/contacts', contactsController.createContact)
 
 //quote_item routes
 

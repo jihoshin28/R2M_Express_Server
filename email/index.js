@@ -1,17 +1,31 @@
 const nodemailer = require('nodemailer')
 
-const sendEmail = () => {
-    let options = {
-        pool: true,
-        host: "smtp.example.com",
-        port: 465,
-        secure: true, // use TLS
+const sendEmail = async() => {
+    console.log('email function hit')
+    let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: true, // upgrade later with STARTTLS
         auth: {
-            user: "username",
-            pass: "password",
+          user: "geeuho",
+          pass: "Jeeho-123",
         },
-    }
-    let transporter = nodemailer.createTransport(options)
+    }); 
+
+
+    let message = {
+        from: "geeuho@gmail.com",
+        to: "geeuho@gmail.com",
+        subject: "Subject",
+        text: "Hello SMTP Email"
+    }    
+    transporter.sendMail(message, function (err, info) {
+        if (err) {
+          console.log(err)
+        } else {
+          console.log(info);
+        }
+    })
 }
 
 module.exports = {

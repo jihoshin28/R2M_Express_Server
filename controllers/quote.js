@@ -1,5 +1,4 @@
 const models = require('../models')
-const email = require('../email')
 
 const getAllQuotes = async(req, res) => {
     let quotes = await models.Quote.findAll()
