@@ -57,9 +57,10 @@ module.exports = (sequelize, DataTypes) => {
     },
     move_size: {
       type: DataTypes.STRING, 
+      allowNull: false,
       validate:{
-        isallowNull(value){
-          if(value === "Select move size"){
+        isSelectSize(value){
+          if(value === "Select size"){
             throw new Error('Please select a move size.')
           }
         }

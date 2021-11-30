@@ -26,10 +26,13 @@ const getBooking = async(req, res) => {
 
 const createBooking = async(req, res) => {
     console.log(req.body.bookingInfo)
-    const newBooking = await models.Booking.create(req.body.bookingInfo)
-    // need to add validator logic
-    console.log(newBooking)
-    res.json(newBooking).status(200)
+    try {
+        const newBooking = await models.Booking.create(req.body.bookingInfo)
+        res.send(newBooking).status(200)
+    } catch(err){
+        res.send(err).status(400)
+    }
+    
 }
 
 const updateBooking = async(req, res) => {
