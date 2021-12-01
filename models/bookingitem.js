@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     item_id: {
       type: DataTypes.INTEGER
     },
-    quote_id: {
+    booking_id: {
       type: DataTypes.INTEGER
     },
   }, {

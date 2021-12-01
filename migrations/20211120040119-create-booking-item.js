@@ -14,7 +14,7 @@ module.exports = {
       item_id: {
         type: Sequelize.INTEGER
       },
-      quote_id: {
+      booking_id: {
         type: Sequelize.INTEGER
       },
       createdAt: {
