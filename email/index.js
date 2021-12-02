@@ -19,21 +19,21 @@ const sendEmail = async(name, email, subject, text) => {
         text
     }    
 
-    let message2 = {
-        from: "jihoshin.28@gmail.com",
-        to: "jihoshin.28@gmail.com",
-        subject: "another subject",
-        text: "another text"
-    }
+    // let message2 = {
+    //     from: "jihoshin.28@gmail.com",
+    //     to: "jihoshin.28@gmail.com",
+    //     subject: "another subject",
+    //     text: "another text"
+    // }
 
-    let result = await transporter.sendMail(message1, function (err, info)  {
+    await transporter.sendMail(message1, function (err, info)  {
         if (err) {
-          return err
+          return callback(err)
         } else {
-          return info
+          return callback(info)
         }
     })
-    
+
     // transporter.sendMail(message2, function (err, info)  {
     //     if (err) {
     //       console.log(err)
