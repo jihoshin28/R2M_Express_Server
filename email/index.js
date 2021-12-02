@@ -1,31 +1,47 @@
 const nodemailer = require('nodemailer')
+const dotenv = require('dotenv').config()
 
-const sendEmail = async() => {
+const sendEmail = async(name, email, subject, text) => {
     console.log('email function hit')
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: true, // upgrade later with STARTTLS
+        service: "gmail",
         auth: {
-          user: "geeuho",
-          pass: "Jeeho-123",
-        },
+            user: process.env.GMAIL_USERNAME,
+            pass: process.env.GMAIL_PASSWORD
+        }
     }); 
 
 
-    let message = {
-        from: "geeuho@gmail.com",
-        to: "geeuho@gmail.com",
-        subject: "Subject",
-        text: "Hello SMTP Email"
+    let message1 = {
+        from: "jihoshin.28@gmail.com",
+        to: 'geeuho@gmail.com',
+        subject,
+        text
     }    
-    transporter.sendMail(message, function (err, info) {
+
+    let message2 = {
+        from: "jihoshin.28@gmail.com",
+        to: "jihoshin.28@gmail.com",
+        subject: "another subject",
+        text: "another text"
+    }
+
+    let result = await transporter.sendMail(message1, function (err, info)  {
         if (err) {
-          console.log(err)
+          return err
         } else {
-          console.log(info);
+          return info
         }
     })
+    
+    // transporter.sendMail(message2, function (err, info)  {
+    //     if (err) {
+    //       console.log(err)
+    //     } else {
+    //       console.log('Email was sent', info);
+    //     }
+    // })
+
 }
 
 module.exports = {
