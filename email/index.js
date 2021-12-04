@@ -19,7 +19,7 @@ const sendEmail = async(name, email, subject, message) => {
       html: `
       <html>
         <div style = "padding: 15px; background-color: #EEEEEE;">
-          <h1>New Contact Submitted</h1>
+          <h1>New Contact Request Submitted</h1>
         </div>
         <div style = "padding: 20px; background-color: #EEEEEE;">
           <h3>Contact Details</h3>
@@ -60,6 +60,114 @@ const sendEmail = async(name, email, subject, message) => {
           <br></br>
           <p>Best,</p>
           <p>UpackHaulers</p>
+        </div>
+        <div style = "padding: 20px; background-color: #878787">
+          <div >
+            <div>
+              <h5 style = "color: white;">
+                ©2021 UpackHaulers All Rights Reserved
+              </h5>
+            </div>  
+            <div>
+              <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+            </div>
+          </div>
+        </div>
+      </html>
+      `
+    }
+
+    let quoteNotification = {
+      from: "jihoshin.28@gmail.com",
+      to: `${email}`,
+      subject,
+      html: `
+      <html>
+        <head>
+          <style>
+            .table-header {
+              width: 1000px;
+              background-color: black;
+              color: white;
+            }
+
+            .description-header {
+              width: 700px;
+              background-color: gray;
+              color: white;
+              
+            }
+
+            .quantity-header {
+              width: 300px;
+              background-color: gray;
+              color: white;
+              
+            }
+
+            .description-body {
+              width: 700px;
+              background-color: white;
+              color: black;
+              
+            }
+
+            .quantity-body {
+              width: 300px;
+              background-color: white;
+              color: black;
+              
+            }
+          </style>
+        </head>
+        <div style = "padding: 20px; background-color: #EEEEEE;">
+          <h1>New Quote Request Submitted!</h1>
+          <br></br>
+          <p>From: ${name}</p>
+          <p>Email: ${email}</p>
+          <p>Phone: (510)789-9938</p>
+          <br></br>
+          <p>Quote Details: </p>
+          <tablen style = "border: 1px solid black">
+              <thead>
+                <tr>
+                    <th class = "table-header" colspan="4">Items List</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td class = "description-header" colspan= "3">Description</td>
+                    <td class = "quantity-header" colspan = "1">Quantity</td>
+                </tr>
+                <tr>
+                    <td class = "description-body" colspan= "3">Some Item Description #1</td>
+                    <td class = "quantity-body" colspan = "1">3</td>
+                </tr>
+                <tr>
+                    <td class = "description-body" colspan= "3">Some Item Description #2</td>
+                    <td class = "quantity-body" colspan = "1">2</td>
+                </tr>
+                <tr>
+                    <td class = "description-body" colspan= "3">Some Item Description #3</td>
+                    <td class = "quantity-body" colspan = "1">1</td>
+                </tr>
+              </tbody>
+          </table>
+          <br></br>
+          <h3>Starting Address:</h3>
+          <h3>5600 Pacific Grove Way </h3>
+          <h3>Union City, CA 94587</h3>
+          <br></br>
+          <h3>Delivery Address:</h3>
+          <h3>34341 Eucalyptus Terrace</h3>
+          <h3>Fremont, CA 94555</h3>
+          <br></br>
+          <h3>Total Distance: 10 miles</h3>
+          <h3>Vehicle Type: Truck</h3>
+          <h3>Move Size: 2 bedroom</h3>
+          <br></br>
+          <h1>Initial Estimate: $540.35</h1> 
+          <br></br>
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div >
@@ -194,7 +302,7 @@ const sendEmail = async(name, email, subject, message) => {
     //     text: "another text"
     // }
 
-    await transporter.sendMail(customerQuoteNotification, function (err, info)  {
+    await transporter.sendMail(quoteNotification, function (err, info)  {
         if (err) {
           console.log(err)
         } else {
