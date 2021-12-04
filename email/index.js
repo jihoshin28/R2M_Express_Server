@@ -35,7 +35,10 @@ const sendEmail = async(name, email, subject, message) => {
               <h5 style = "color: white;">
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
-            </div>  
+            </div> 
+            <div style = "padding-bottom: 20px;">
+              <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+            </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
             </div>
@@ -67,7 +70,10 @@ const sendEmail = async(name, email, subject, message) => {
               <h5 style = "color: white;">
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
-            </div>  
+            </div> 
+            <div style = "padding-bottom: 20px;">
+              <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+            </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
             </div>
@@ -175,7 +181,10 @@ const sendEmail = async(name, email, subject, message) => {
               <h5 style = "color: white;">
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
-            </div>  
+            </div> 
+            <div style = "padding-bottom: 20px;">
+              <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+            </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
             </div>
@@ -285,7 +294,10 @@ const sendEmail = async(name, email, subject, message) => {
               <h5 style = "color: white;">
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
-            </div>  
+            </div> 
+            <div style = "padding-bottom: 20px;">
+              <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+            </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
             </div>
