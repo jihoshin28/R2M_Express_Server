@@ -45,6 +45,38 @@ const sendEmail = async(name, email, subject, message) => {
       `
     }
 
+    let contactCustomerNotification = {
+      from: "jihoshin.28@gmail.com",
+      to: `${email}`,
+      subject,
+      html: `
+      <html>
+        <div style = "padding: 20px; background-color: #EEEEEE;">
+          <h3>We got your contact request!</h3>
+          <br></br>
+          <p>Hi ${name}, </p>
+          <p>Thanks for taking the time to reach out to us! </p>
+          <p>Your questions and concerns are very important to us and we will follow up with your request ASAP.</p>
+          <br></br>
+          <p>Best,</p>
+          <p>UpackHaulers</p>
+        </div>
+        <div style = "padding: 20px; background-color: #878787">
+          <div >
+            <div>
+              <h5 style = "color: white;">
+                ©2021 UpackHaulers All Rights Reserved
+              </h5>
+            </div>  
+            <div>
+              <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+            </div>
+          </div>
+        </div>
+      </html>
+      `
+    }
+
     // let message2 = {
     //     from: "jihoshin.28@gmail.com",
     //     to: "jihoshin.28@gmail.com",
@@ -52,7 +84,7 @@ const sendEmail = async(name, email, subject, message) => {
     //     text: "another text"
     // }
 
-    await transporter.sendMail(contactNotification, function (err, info)  {
+    await transporter.sendMail(contactCustomerNotification, function (err, info)  {
         if (err) {
           console.log(err)
         } else {
