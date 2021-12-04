@@ -1,4 +1,5 @@
 const models = require('../models')
+const {sendQuoteEmail} = require('../email')
 
 const getAllQuotes = async(req, res) => {
     let quotes = await models.Quote.findAll()
@@ -28,6 +29,7 @@ const getQuote = async(req, res) => {
 const createQuote = async(req, res) => {
     console.log(req.body.quoteInfo)
     try {
+        
         const newQuote = await models.Quote.create(req.body.quoteInfo)
         res.send(newQuote).status(200)
     } catch(err) {
