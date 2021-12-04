@@ -1,7 +1,7 @@
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv').config()
 
-const sendEmail = async(name, email, subject, text) => {
+const sendEmail = async(name, email, subject, message) => {
     console.log('email function hit')
     let transporter = nodemailer.createTransport({
         service: "gmail",
@@ -12,12 +12,38 @@ const sendEmail = async(name, email, subject, text) => {
     }); 
 
 
-    let message1 = {
-        from: "jihoshin.28@gmail.com",
-        to: 'geeuho@gmail.com',
-        subject,
-        text
-    }    
+    let contactNotification = {
+      from: "jihoshin.28@gmail.com",
+      to: `${email}`,
+      subject,
+      html: `
+      <html>
+        <div style = "padding: 15px; background-color: #EEEEEE;">
+          <h1>New Contact Submitted</h1>
+        </div>
+        <div style = "padding: 20px; background-color: #EEEEEE;">
+          <h3>Contact Details</h3>
+          <br></br>
+          <p>Subject: ${subject}</p>
+          <p>From: ${name}</p>
+          <p>Email: ${email}</p>
+          <p>Message: ${message}</p>
+        </div>
+        <div style = "padding: 20px; background-color: #878787">
+          <div >
+            <div>
+              <h5 style = "color: white;">
+                ©2021 UpackHaulers All Rights Reserved
+              </h5>
+            </div>  
+            <div>
+              <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+            </div>
+          </div>
+        </div>
+      </html>
+      `
+    }
 
     // let message2 = {
     //     from: "jihoshin.28@gmail.com",
@@ -26,11 +52,11 @@ const sendEmail = async(name, email, subject, text) => {
     //     text: "another text"
     // }
 
-    await transporter.sendMail(message1, function (err, info)  {
+    await transporter.sendMail(contactNotification, function (err, info)  {
         if (err) {
-          return callback(err)
+          console.log(err)
         } else {
-          return callback(info)
+          console.log(info)
         }
     })
 
