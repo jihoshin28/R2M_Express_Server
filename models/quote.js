@@ -39,7 +39,7 @@ module.exports = (sequelize, DataTypes) => {
             checkChars(char)
           })
         }
-      },
+      }
     },
     email: {
       type: DataTypes.STRING,
@@ -56,7 +56,10 @@ module.exports = (sequelize, DataTypes) => {
       }
     },
     move_size: {
-      type: DataTypes.STRING, 
+      type: DataTypes.STRING,
+      
+    },
+    vehicle_size: {
       allowNull: false,
       validate:{
         isSelectSize(value){
@@ -72,8 +75,100 @@ module.exports = (sequelize, DataTypes) => {
     price_total: {
       type: DataTypes.FLOAT
     },
-    comments: {
+    comment: {
       type: DataTypes.TEXT
+    },
+    // start_time: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // start_date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false
+    // },
+    start_street: {
+      type: DataTypes.STRING
+    },
+    start_city: {
+      type: DataTypes.STRING,
+      validate: {
+        isCity(value){
+          let checkChars = (val) => {
+            for(let i = 0; i < val.length; i++){
+              if(!(/[a-zA-Z]/).test(val[i])){
+                console.log(val[i], typeof val[i])
+                throw new Error('Please enter valid city.')
+              }
+            }
+          } 
+          
+          let nameArray = value.split(' ')
+
+          nameArray.forEach(char => {
+            checkChars(char)
+          })
+        }
+      },
+    },
+    start_state: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlpha: true,
+        len: [2, 2]
+      }
+    },
+    start_zip: {
+      type: DataTypes.STRING,
+      validate: {
+        isInt: true,
+        len: [5, 5]
+      }
+    },
+    // delivery_time: {
+    //   type: DataTypes.STRING,
+    //   allowNull: false
+    // },
+    // delivery_date: {
+    //   type: DataTypes.DATE,
+    //   allowNull: false
+    // },
+    delivery_street: {
+      type: DataTypes.STRING,
+    },
+    delivery_city: {
+      type: DataTypes.STRING,
+      validate: {
+        isCity(value){
+          let checkChars = (val) => {
+            for(let i = 0; i < val.length; i++){
+              if(!(/[a-zA-Z]/).test(val[i])){
+                console.log(val[i], typeof val[i])
+                throw new Error('Please enter valid city.')
+              }
+            }
+          } 
+          
+          let nameArray = value.split(' ')
+
+          nameArray.forEach(char => {
+            checkChars(char)
+          })
+        }
+      },
+    },
+    delivery_state: {
+      type: DataTypes.STRING,
+      validate: {
+        isAlpha: true,
+        len: [2, 2]
+      }
+    },
+    delivery_zip: {
+      type: DataTypes.STRING,
+      validate: {
+        isInt: true,
+        len: [5, 5]
+      }
     },
   }, {
     sequelize,
