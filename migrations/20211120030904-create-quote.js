@@ -20,6 +20,15 @@ module.exports = {
       move_size: {
         type: Sequelize.STRING
       },
+      vehicle_size: {
+        type: Sequelize.STRING
+      },
+      floor: {
+        type: Sequelize.STRING
+      },
+      distance: {
+        type: Sequelize.FLOAT
+      },
       weight_total: {
         type: Sequelize.FLOAT
       },
@@ -28,6 +37,30 @@ module.exports = {
       },
       comments: {
         type: Sequelize.TEXT
+      },
+      start_street: {
+        type: Sequelize.STRING
+      },
+      start_city: {
+        type: Sequelize.STRING
+      },
+      start_state: {
+        type: Sequelize.STRING
+      },
+      start_zip: {
+        type: Sequelize.STRING
+      },
+      delivery_street: {
+        type: Sequelize.STRING
+      },
+      delivery_city: {
+        type: Sequelize.STRING
+      },
+      delivery_state: {
+        type: Sequelize.STRING
+      },
+      delivery_zip: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

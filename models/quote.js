@@ -57,9 +57,16 @@ module.exports = (sequelize, DataTypes) => {
     },
     move_size: {
       type: DataTypes.STRING,
-      
+      validate:{
+        isSelectSize(value){
+          if(value === "Select size"){
+            throw new Error('Please select a move size.')
+          }
+        }
+      }
     },
     vehicle_size: {
+      type: DataTypes.STRING,
       allowNull: false,
       validate:{
         isSelectSize(value){
@@ -69,13 +76,19 @@ module.exports = (sequelize, DataTypes) => {
         }
       }
     },
+    floor: {
+      type: DataTypes.STRING,
+    },
+    distance: {
+      type: DataTypes.FLOAT
+    },
     weight_total: {
       type: DataTypes.FLOAT
     },
     price_total: {
       type: DataTypes.FLOAT
     },
-    comment: {
+    comments: {
       type: DataTypes.TEXT
     },
     // start_time: {
