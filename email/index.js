@@ -101,7 +101,7 @@ const sendContactEmail = async(name, email, subject, message) => {
 
 }
 
-const sendQuoteEmail = async() => {
+const sendQuoteEmail = async(name, email, subject, message) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
