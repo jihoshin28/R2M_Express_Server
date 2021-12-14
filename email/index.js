@@ -14,7 +14,7 @@ const sendContactEmail = async(name, email, subject, message) => {
 
     let contactNotification = {
       from: "jihoshin.28@gmail.com",
-      to: `${email}`,
+      to: "jihoshin.28@gmail.com",
       subject,
       html: `
       <html>
@@ -101,7 +101,22 @@ const sendContactEmail = async(name, email, subject, message) => {
 
 }
 
-const sendQuoteEmail = async(name, email, subject, message) => {
+const sendQuoteEmail = async(name, email, phone, start_street, start_address_details, delivery_street, delivery_address_details, distance, move_size, vehicle_size, quoteItems) => {
+
+  let renderQuoteItems = () => {
+    let string = ""
+    let quoteItemIds = Object.keys(quoteItems)
+    for(let i = 0; i < quoteItemIds.length; i++){
+      let quoteItem = quoteItems[quoteItemIds[i]]
+      string += 
+      `<tr>
+        <td class = "description-body" colspan= "3">${quoteItem.name}</td>
+        <td class = "quantity-body" colspan = "1">${quoteItem.quantity}</tdq>
+      </tr>`
+    }
+    return string
+  }
+
   let transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -112,8 +127,8 @@ const sendQuoteEmail = async(name, email, subject, message) => {
   
   let quoteNotification = {
     from: "jihoshin.28@gmail.com",
-    to: `${email}`,
-    subject,
+    to: "jihoshin.28@gmail.com",
+    subject: "Quote Notification",
     html: `
     <html>
       <head>
@@ -158,7 +173,7 @@ const sendQuoteEmail = async(name, email, subject, message) => {
         <br></br>
         <p>From: ${name}</p>
         <p>Email: ${email}</p>
-        <p>Phone: (510)789-9938</p>
+        <p>Phone: ${phone}</p>
         <br></br>
         <p>Quote Details: </p>
         <tablen style = "border: 1px solid black">
@@ -169,37 +184,24 @@ const sendQuoteEmail = async(name, email, subject, message) => {
             </thead>
             <tbody>
               <tr>
-                  <td class = "description-header" colspan= "3">Description</td>
-                  <td class = "quantity-header" colspan = "1">Quantity</td>
+                <td class = "description-header" colspan= "3">Description</td>
+                <td class = "quantity-header" colspan = "1">Quantity</td>
               </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #1</td>
-                  <td class = "quantity-body" colspan = "1">3</td>
-              </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #2</td>
-                  <td class = "quantity-body" colspan = "1">2</td>
-              </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #3</td>
-                  <td class = "quantity-body" colspan = "1">1</td>
-              </tr>
+              ${renderQuoteItems()}
             </tbody>
         </table>
         <br></br>
         <h3>Starting Address:</h3>
-        <h3>5600 Pacific Grove Way </h3>
-        <h3>Union City, CA 94587</h3>
+        <h3>${start_street}</h3>
+        <h3>${start_address_details}</h3>
         <br></br>
         <h3>Delivery Address:</h3>
-        <h3>34341 Eucalyptus Terrace</h3>
-        <h3>Fremont, CA 94555</h3>
+        <h3>${delivery_street}</h3>
+        <h3>${delivery_address_details}</h3>
         <br></br>
-        <h3>Total Distance: 10 miles</h3>
-        <h3>Vehicle Type: Truck</h3>
-        <h3>Move Size: 2 bedroom</h3>
-        <br></br>
-        <h1>Initial Estimate: $540.35</h1> 
+        <h3>Total Distance: ${distance}</h3>
+        <h3>Vehicle Type: ${vehicle_size}</h3>
+        <h3>Move Size: ${move_size}</h3>
         <br></br>
       </div>
       <div style = "padding: 20px; background-color: #878787">
@@ -224,7 +226,7 @@ const sendQuoteEmail = async(name, email, subject, message) => {
   let customerQuoteNotification = {
     from: "jihoshin.28@gmail.com",
     to: `${email}`,
-    subject,
+    subject: "We've received your quote!",
     html: `
     <html>
       <head>
@@ -278,37 +280,24 @@ const sendQuoteEmail = async(name, email, subject, message) => {
             </thead>
             <tbody>
               <tr>
-                  <td class = "description-header" colspan= "3">Description</td>
-                  <td class = "quantity-header" colspan = "1">Quantity</td>
+                <td class = "description-header" colspan= "3">Description</td>
+                <td class = "quantity-header" colspan = "1">Quantity</td>
               </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #1</td>
-                  <td class = "quantity-body" colspan = "1">3</td>
-              </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #2</td>
-                  <td class = "quantity-body" colspan = "1">2</td>
-              </tr>
-              <tr>
-                  <td class = "description-body" colspan= "3">Some Item Description #3</td>
-                  <td class = "quantity-body" colspan = "1">1</td>
-              </tr>
+              ${renderQuoteItems()}
             </tbody>
         </table>
         <br></br>
         <h3>Starting Address:</h3>
-        <h3>5600 Pacific Grove Way </h3>
-        <h3>Union City, CA 94587</h3>
+        <h3>${start_street}</h3>
+        <h3>${start_address_details}</h3>
         <br></br>
         <h3>Delivery Address:</h3>
-        <h3>34341 Eucalyptus Terrace</h3>
-        <h3>Fremont, CA 94555</h3>
+        <h3>${delivery_street}</h3>
+        <h3>${delivery_address_details}</h3>
         <br></br>
-        <h3>Total Distance: 10 miles</h3>
-        <h3>Vehicle Type: Truck</h3>
-        <h3>Move Size: 2 bedroom</h3>
-        <br></br>
-        <h1>Initial Estimate: $540.35</h1> 
+        <h3>Total Distance: ${distance}</h3>
+        <h3>Vehicle Type: ${vehicle_size}</h3>
+        <h3>Move Size: ${move_size}</h3>
         <br></br>
         <p>This is a rough estimate and one of our correspondants will follow up with you on your quote request with more details ASAP.</p>
         <br></br>

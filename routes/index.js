@@ -21,6 +21,7 @@ router.get('/quotes', quotesController.getAllQuotes)
 router.get('/quotes/:id', quotesController.getQuote)
 router.post('/quotes', quotesController.createQuote)
 router.put('/quotes/:id', quotesController.updateQuote)
+router.put('/send_quote/:id', quotesController.finalizeQuote)
 router.delete('/quotes/:id', quotesController.deleteQuote)
 
 // bookings routes
