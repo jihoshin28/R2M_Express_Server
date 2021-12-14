@@ -38,6 +38,9 @@ module.exports = {
       comments: {
         type: Sequelize.TEXT
       },
+      added_items: {
+        type: Sequelize.TEXT
+      },
       start_street: {
         type: Sequelize.STRING
       },

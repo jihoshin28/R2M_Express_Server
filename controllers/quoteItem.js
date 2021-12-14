@@ -13,7 +13,6 @@ const getAllQuoteItemsByQuote = async(req, res) => {
 }
 
 const createQuoteItem = async(req, res) => {
-    console.log(req.body.quoteItemInfo)
     const newQuoteItem = await models.QuoteItem.create(req.body.quoteItemInfo)
     // need to add validator logic
     console.log(newQuoteItem)

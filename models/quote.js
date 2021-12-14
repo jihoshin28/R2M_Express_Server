@@ -91,14 +91,9 @@ module.exports = (sequelize, DataTypes) => {
     comments: {
       type: DataTypes.TEXT
     },
-    // start_time: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false
-    // },
-    // start_date: {
-    //   type: DataTypes.DATE,
-    //   allowNull: false
-    // },
+    added_items: {
+      type: DataTypes.TEXT
+    },
     start_street: {
       type: DataTypes.STRING
     },

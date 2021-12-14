@@ -40,7 +40,7 @@ const createQuote = async(req, res) => {
 }
 
 const updateQuote = async(req, res) => {
-    console.log(req.body.quoteInfo)
+
     try {
         const updatedQuote = await models.Quote.update(req.body.quoteInfo, {
             where: {
