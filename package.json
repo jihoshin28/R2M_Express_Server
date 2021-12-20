@@ -8,8 +8,7 @@
     "migrate": "sequelize db:migrate",
     "create": "sequelize db:create",
     "drop": "seqeuelize db:drop",
-    "seed-items": "sequelize db:seed --seed 20211122211719-items.js",
-    "seed": "npm-run-all seed-items"
+    "seed-items": "sequelize db:seed --seed 20211122211719-items.js"
   },
   "keywords": [],
   "author": "",
