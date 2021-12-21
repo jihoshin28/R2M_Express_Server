@@ -14,10 +14,11 @@
     "dialect": "postgres"
   },
   "production": {
-    "username": "allen",
-    "password": "jeeho123",
-    "database": "upack_haulers",
-    "host": "127.0.0.1",
+    "username": "qmsslupljiwdog",
+    "password": "cab52ea33ebaa669601bc4426024af19a40c4608990c28de6fd195b55cc0c4b5",
+    "database": "dfodqifg0o195a",
+    "host": "ec2-34-204-127-36.compute-1.amazonaws.com",
+    "port": "5432",
     "dialect": "postgres"
   }
 }
