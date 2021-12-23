@@ -408,7 +408,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
         <p>From: ${name}</p>
         <p>Email: ${email}</p>
         <p>Message: ${message}</p>
-        <form action="https://intense-oasis-88289.herokuapp.com/quotes" method="GET">
+        <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
           <div>
             <button>Send my greetings</button>
           </div>
