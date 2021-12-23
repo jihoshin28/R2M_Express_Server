@@ -83,16 +83,15 @@ const finalizeQuote = async(req, res) => {
             }
         }) 
 
-        const quoteItemArray = finalizedQuoteItemIds.map((item) => [item.dataValues.item_id, item.dataValues.quantity])
         
         let quoteItems = {
-
+            
         }
         
+        const quoteItemArray = finalizedQuoteItemIds.map((item) => [item.dataValues.item_id, item.dataValues.quantity])
         
         for(let i = 0; i < quoteItemArray.length; i++){
             let quote_item = quoteItemArray[i]
-            console.log(quoteItems[quote_item[0]] === undefined, quoteItems[quote_item[0]], quote_item[0])
             if(quoteItems[quote_item[0]] === undefined){
                 let item = await models.Item.findOne({
                     where: {
@@ -105,11 +104,15 @@ const finalizeQuote = async(req, res) => {
                 }
             } 
         }
+
         let quote = finalizedQuote.dataValues
+        let added_items = JSON.parse(quote.added_items)
+        
+        let allItems = Object.assign(quoteItems, added_items)
         let start_address_details = `${quote.start_city}, ${quote.start_state} ${quote.start_zip}`
         let delivery_address_details = `${quote.delivery_city}, ${quote.delivery_state} ${quote.delivery_zip}`
     
-        sendQuoteEmail(quote.name, quote.email, quote.phone, quote.start_street, start_address_details, quote.delivery_street, delivery_address_details, quote.distance, quote.move_size, quote.vehicle_size, quoteItems)
+        sendQuoteEmail(quote.name, quote.email, quote.phone, quote.start_street, start_address_details, quote.delivery_street, delivery_address_details, quote.distance, quote.move_size, quote.vehicle_size, allItems)
         
     
 
