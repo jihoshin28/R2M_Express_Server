@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "cd node_modules/cors-anywhere/lib/ && npm run start",
+    "start": "nodemon index.js",
     "migrate": "sequelize db:migrate",
     "create": "sequelize db:create",
     "drop": "sequelize db:drop",
@@ -19,7 +19,6 @@
     "@aws-cdk/aws-secretsmanager": "^1.136.0",
     "@aws-cdk/core": "^1.136.0",
     "axios": "^0.24.0",
-    "concurrently": "^6.5.1",
     "cors": "^2.8.5",
     "cors-anywhere": "^0.4.4",
     "dotenv": "^10.0.0",
