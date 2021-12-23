@@ -17,7 +17,7 @@ router.get('/', (req, res) => res.send('Welcome to UpackHaulers!'))
 
 // quotes routes
 
-router.get('/quote_request', quotesController.quoteEmailRequest)
+router.get('/quotes_request', quotesController.quoteEmailRequest)
 router.get('/quotes', quotesController.getAllQuotes)
 router.get('/quotes/:id', quotesController.getQuote)
 router.post('/quotes', quotesController.createQuote)
