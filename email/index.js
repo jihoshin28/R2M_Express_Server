@@ -448,7 +448,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
           <table style = "border: 1px solid black">
             <thead>
               <tr>
-                  <th class = "table-header" colspan="4">Items List</th>
+                  <th class = "table-header" colspan="7">Quotes List</th>
               </tr>
             </thead>
             <tbody>
