@@ -464,11 +464,9 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               ${renderQuotes()}
             </tbody>
           </table>
-          <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
-            <div>
-              <button>Send my greetings</button>
-            </div>
-          </form>
+          <div style = "paddingTop: 30px; background-color: #878787">
+            <button onClick = "sendEmailNotification()">Send quotes request</button>
+          </div>
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
