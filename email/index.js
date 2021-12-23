@@ -397,15 +397,16 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
     let string = ""
 
     for(let i = 0; i < quotes.length; i++){
+      let quote = quotes[i]
       string += 
       `<tr>
-        <td class = "body" colspan= "1">${quotes.name}</td>
-        <td class = "body" colspan = "1">${quotes.email}</td>
-        <td class = "body" colspan = "1">${quotes.phone}</td>
-        <td class = "body" colspan = "1">${quotes.move_size}</td>
-        <td class = "body" colspan = "1">${quotes.vehicle_size}</td>
-        <td class = "body" colspan = "1">${quotes.distance}</td>
-        <td class = "body" colspan = "1">${quotes.floor}</td>
+        <td class = "body" colspan= "1">${quote.name}</td>
+        <td class = "body" colspan = "1">${quote.email}</td>
+        <td class = "body" colspan = "1">${quote.phone}</td>
+        <td class = "body" colspan = "1">${quote.move_size}</td>
+        <td class = "body" colspan = "1">${quote.vehicle_size}</td>
+        <td class = "body" colspan = "1">${quote.distance}</td>
+        <td class = "body" colspan = "1">${quote.floor}</td>
       </tr>`
     }
     return string
@@ -439,50 +440,63 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
           }
         </style>
       </head>
-      <div style = "padding: 15px; background-color: #EEEEEE;">
-        <h1>Current Quotes</h1>
-      </div>
-      <div style = "padding: 20px; background-color: #EEEEEE;">
-        <table style = "border: 1px solid black">
-          <thead>
-            <tr>
-                <th class = "table-header" colspan="4">Items List</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td class = "header" colspan= "1">Name</td>
-              <td class = "header" colspan= "1">Email</td>
-              <td class = "header" colspan = "1">Phone</td>
-              <td class = "header" colspan= "1">Move Size</td>
-              <td class = "header" colspan = "1">Vehicle Size</td>
-              <td class = "header" colspan = "1">Distance</td>
-              <td class = "header" colspan = "1">Floor</td>
-            </tr>
-            ${renderQuotes()}
-          </tbody>
-        </table>
-        <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
+      <body>
+        <div style = "padding: 15px; background-color: #EEEEEE;">
+          <h1>Current Quotes</h1>
+        </div>
+        <div style = "padding: 20px; background-color: #EEEEEE;">
+          <table style = "border: 1px solid black">
+            <thead>
+              <tr>
+                  <th class = "table-header" colspan="4">Items List</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class = "header" colspan= "1">Name</td>
+                <td class = "header" colspan= "1">Email</td>
+                <td class = "header" colspan = "1">Phone</td>
+                <td class = "header" colspan= "1">Move Size</td>
+                <td class = "header" colspan = "1">Vehicle Size</td>
+                <td class = "header" colspan = "1">Distance</td>
+                <td class = "header" colspan = "1">Floor</td>
+              </tr>
+              ${renderQuotes()}
+            </tbody>
+          </table>
+          <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
+            <div>
+              <button>Send my greetings</button>
+            </div>
+          </form>
+        </div>
+        <div style = "padding: 20px; background-color: #878787">
           <div>
-            <button>Send my greetings</button>
-          </div>
-        </form>
-      </div>
-      <div style = "padding: 20px; background-color: #878787">
-        <div>
-          <div>
-            <h5 style = "color: white;">
-              ©2021 UpackHaulers All Rights Reserved
-            </h5>
-          </div> 
-          <div style = "padding-bottom: 20px;">
-            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
-          </div> 
-          <div>
-            <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+            <div>
+              <h5 style = "color: white;">
+                ©2021 UpackHaulers All Rights Reserved
+              </h5>
+            </div> 
+            <div style = "padding-bottom: 20px;">
+              <button onClick = "sendEmailNotification()">Get Quotes</button>
+            </div> 
+            <div>
+              <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+            </div>
           </div>
         </div>
-      </div>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+          <script>
+            console.log(axios)
+            function sendEmailNotification() {
+              axios({
+                method: 'get',
+                url: 'https://intense-oasis-88289.herokuapp.com/quotes_request'
+              });
+            }
+
+          </script>
+      </body>
       
     </html>
     `
