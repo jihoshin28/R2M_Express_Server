@@ -7,7 +7,7 @@ const quoteEmailRequest = async(req, res) => {
         return res.json({"status": "There are no quotes."}).status(200)
     }
     sendQuotesRequestEmail(quotes, 'allen', 'jihoshin.28@gmail.com', 'Hello', 'Whatsup')
-    return res.send('Email sent!').status(200)
+    return
 }
 
 const getAllQuotes = async(req, res) => {
