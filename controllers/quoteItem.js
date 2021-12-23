@@ -1,5 +1,13 @@
 const models = require('../models')
 
+const getAllQuoteItems = async(req, res) => {
+    let quote_items = await models.QuoteItem.findAll()
+    if(quote_items.length === 0){
+        return res.json({"status": "There are no quote_items."}).status(200)
+    }
+    return res.json(quote_items).status(200)
+}
+
 const getAllQuoteItemsByQuote = async(req, res) => {
     let quoteItems = await models.QuoteItem.findAll({
         where: {
@@ -30,6 +38,7 @@ const deleteQuoteItem = async(req, res) => {
 }
 
 module.exports = {
+    getAllQuoteItems,
     getAllQuoteItemsByQuote,
     createQuoteItem,
     updateQuoteItem,

@@ -30,7 +30,7 @@ const sendContactEmail = async(name, email, subject, message) => {
           <p>Message: ${message}</p>
         </div>
         <div style = "padding: 20px; background-color: #878787">
-          <div >
+          <div>
             <div>
               <h5 style = "color: white;">
                 ©2021 UpackHaulers All Rights Reserved
@@ -102,7 +102,6 @@ const sendContactEmail = async(name, email, subject, message) => {
 }
 
 const sendQuoteEmail = async(name, email, phone, start_street, start_address_details, delivery_street, delivery_address_details, distance, move_size, vehicle_size, quoteItems) => {
-
   let renderQuoteItems = () => {
     let string = ""
     let quoteItemIds = Object.keys(quoteItems)

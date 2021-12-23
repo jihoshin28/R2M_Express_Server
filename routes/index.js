@@ -54,6 +54,7 @@ router.post('/contacts', contactsController.createContact)
 
 //quote_item routes
 
+router.get('/quote_items', quoteItemsController.getAllQuoteItems)
 router.get('/quote_items/:quote_id', quoteItemsController.getAllQuoteItemsByQuote)
 router.post('/quote_items', quoteItemsController.createQuoteItem)
 router.put('/quote_items/:item_id/:quote_id', quoteItemsController.updateQuoteItem)
