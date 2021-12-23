@@ -1,16 +1,15 @@
 const nodemailer = require('nodemailer')
 const dotenv = require('dotenv').config()
 
-const sendContactEmail = async(name, email, subject, message) => {
-    console.log('contact email function hit')
-    let transporter = nodemailer.createTransport({
-        service: "gmail",
-        auth: {
-            user: process.env.GMAIL_USERNAME,
-            pass: process.env.GMAIL_PASSWORD
-        }
-    }); 
+const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.GMAIL_USERNAME,
+        pass: process.env.GMAIL_PASSWORD
+    }
+}); 
 
+const sendContactEmail = async(name, email, subject, message) => {
 
     let contactNotification = {
       from: "jihoshin.28@gmail.com",
@@ -115,14 +114,6 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
     }
     return string
   }
-
-  let transporter = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.GMAIL_USERNAME,
-        pass: process.env.GMAIL_PASSWORD
-    }
-  });
   
   let quoteNotification = {
     from: "jihoshin.28@gmail.com",
@@ -339,7 +330,131 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
   })
 }
 
+const sendReviewsRequestEmail = async(name, email, subject, message) => {
+  const transporter2 = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: process.env.GMAIL_USERNAME,
+        pass: process.env.GMAIL_PASSWORD
+    }
+}); 
+  let sendReviewsNotification = {
+    from: "jihoshin.28@gmail.com",
+    to: "jihoshin.28@gmail.com",
+    subject,
+    html: `
+    <html>
+      <div style = "padding: 15px; background-color: #EEEEEE;">
+        <h1>New Contact Request Submitted</h1>
+      </div>
+      <div style = "padding: 20px; background-color: #EEEEEE;">
+        <h3>Contact Details</h3>
+        <br></br>
+        <p>Subject: ${subject}</p>
+        <p>From: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Message: ${message}</p>
+      </div>
+      <div style = "padding: 20px; background-color: #878787">
+        <div>
+          <div>
+            <h5 style = "color: white;">
+              ©2021 UpackHaulers All Rights Reserved
+            </h5>
+          </div> 
+          <div style = "padding-bottom: 20px;">
+            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+          </div> 
+          <div>
+            <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+          </div>
+        </div>
+      </div>
+    </html>
+    `
+  }
+
+  await transporter2.sendMail(sendReviewsNotification, function (err, info)  {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(info)
+      }
+  })
+}
+
+const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
+  console.log(quotes)
+  const transporter2 = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+        user: 'jihoshin.28',
+        pass: 'mwhkcbwrcbjuzlcv'
+    }
+}); 
+  let quotesRequestNotification = {
+    from: "jihoshin.28@gmail.com",
+    to: "jihoshin.28@gmail.com",
+    subject,
+    html: `
+    <html>
+      <div style = "padding: 15px; background-color: #EEEEEE;">
+        <h1>Current Quotes</h1>
+      </div>
+      <div style = "padding: 20px; background-color: #EEEEEE;">
+        <h3>Contact Details</h3>
+        <br></br>
+        <p>Subject: ${subject}</p>
+        <p>From: ${name}</p>
+        <p>Email: ${email}</p>
+        <p>Message: ${message}</p>
+        <form action="https://intense-oasis-88289.herokuapp.com/quotes" method="GET">
+          <div>
+            <label for="say">What greeting do you want to say?</label>
+            <input name="say" id="say" value="Hi">
+          </div>
+          <div>
+            <label for="to">Who do you want to say it to?</label>
+            <input name="to" id="to" value="Mom">
+          </div>
+          <div>
+            <button>Send my greetings</button>
+          </div>
+        </form>
+      </div>
+      <div style = "padding: 20px; background-color: #878787">
+        <div>
+          <div>
+            <h5 style = "color: white;">
+              ©2021 UpackHaulers All Rights Reserved
+            </h5>
+          </div> 
+          <div style = "padding-bottom: 20px;">
+            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+          </div> 
+          <div>
+            <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
+          </div>
+        </div>
+      </div>
+      
+    </html>
+    `
+  }
+  console.log(transporter)
+  await transporter2.sendMail(quotesRequestNotification, function (err, info)  {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log(info)
+      }
+  })
+}
+
+
 module.exports = {
     sendContactEmail,
-    sendQuoteEmail
+    sendQuoteEmail,
+    sendQuotesRequestEmail,
+    sendReviewsRequestEmail
 }
