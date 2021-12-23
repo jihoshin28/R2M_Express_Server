@@ -22,8 +22,6 @@ const getQuote = async(req, res) => {
     } else {
         return res.json(quote).status(200)
     }
-
-
 }
 
 const createQuote = async(req, res) => {

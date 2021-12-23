@@ -410,14 +410,6 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
         <p>Message: ${message}</p>
         <form action="https://intense-oasis-88289.herokuapp.com/quotes" method="GET">
           <div>
-            <label for="say">What greeting do you want to say?</label>
-            <input name="say" id="say" value="Hi">
-          </div>
-          <div>
-            <label for="to">Who do you want to say it to?</label>
-            <input name="to" id="to" value="Mom">
-          </div>
-          <div>
             <button>Send my greetings</button>
           </div>
         </form>
