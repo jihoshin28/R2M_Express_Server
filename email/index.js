@@ -166,7 +166,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
         <p>Phone: ${phone}</p>
         <br></br>
         <p>Quote Details: </p>
-        <tablen style = "border: 1px solid black">
+        <table style = "border: 1px solid black">
             <thead>
               <tr>
                   <th class = "table-header" colspan="4">Items List</th>
@@ -391,23 +391,77 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
         user: 'jihoshin.28',
         pass: 'mwhkcbwrcbjuzlcv'
     }
-}); 
+  }); 
+
+  let renderQuotes = () => {
+    let string = ""
+
+    for(let i = 0; i < quotes.length; i++){
+      string += 
+      `<tr>
+        <td class = "body" colspan= "1">${quotes.name}</td>
+        <td class = "body" colspan = "1">${quotes.email}</td>
+        <td class = "body" colspan = "1">${quotes.phone}</td>
+        <td class = "body" colspan = "1">${quotes.move_size}</td>
+        <td class = "body" colspan = "1">${quotes.vehicle_size}</td>
+        <td class = "body" colspan = "1">${quotes.distance}</td>
+        <td class = "body" colspan = "1">${quotes.floor}</td>
+      </tr>`
+    }
+    return string
+  }
   let quotesRequestNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
     subject,
     html: `
     <html>
+      <head>
+        <style>
+          .table-header {
+            width: 1000px;
+            background-color: black;
+            color: white;
+          }
+
+          .header {
+            width: 300px;
+            background-color: gray;
+            color: white;
+            
+          }
+
+          .body {
+            width: 300px;
+            background-color: white;
+            color: black;
+            
+          }
+        </style>
+      </head>
       <div style = "padding: 15px; background-color: #EEEEEE;">
         <h1>Current Quotes</h1>
       </div>
       <div style = "padding: 20px; background-color: #EEEEEE;">
-        <h3>Contact Details</h3>
-        <br></br>
-        <p>Subject: ${subject}</p>
-        <p>From: ${name}</p>
-        <p>Email: ${email}</p>
-        <p>Message: ${message}</p>
+        <table style = "border: 1px solid black">
+          <thead>
+            <tr>
+                <th class = "table-header" colspan="4">Items List</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class = "header" colspan= "1">Name</td>
+              <td class = "header" colspan= "1">Email</td>
+              <td class = "header" colspan = "1">Phone</td>
+              <td class = "header" colspan= "1">Move Size</td>
+              <td class = "header" colspan = "1">Vehicle Size</td>
+              <td class = "header" colspan = "1">Distance</td>
+              <td class = "header" colspan = "1">Floor</td>
+            </tr>
+            ${renderQuotes()}
+          </tbody>
+        </table>
         <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
           <div>
             <button>Send my greetings</button>
