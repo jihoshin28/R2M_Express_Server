@@ -1,12 +1,12 @@
 const models = require('../models')
-const {sendQuoteEmail, sendQuotesRequestEmail} = require('../email')
+const {sendQuoteEmail} = require('../email')
 
 const getAllQuotes = async(req, res) => {
     let quotes = await models.Quote.findAll()
     if(quotes.length === 0){
         return res.json({"status": "There are no quotes."}).status(200)
     }
-    sendQuotesRequestEmail(quotesResponse, 'allen', 'jihoshin.28@gmail.com', 'Hello', 'Whatsup')
+    return res.json(quotes).status(200)
 }
 
 const getQuote = async(req, res) => {
