@@ -28,6 +28,12 @@ const sendContactEmail = async(name, email, subject, message) => {
           <p>Email: ${email}</p>
           <p>Message: ${message}</p>
         </div>
+        <br></br>
+        <form action="https://intense-oasis-88289.herokuapp.com/contacts_request" method="GET">
+          <div style = "padding-top: 20px">
+            <button>Email me current contacts</button>
+          </div>
+        </form>
         <div style = "padding: 20px; background-color: #878787">
           <div>
             <div>
@@ -193,6 +199,11 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
         <h3>Vehicle Type: ${vehicle_size}</h3>
         <h3>Move Size: ${move_size}</h3>
         <br></br>
+        <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
+          <div style = "padding-top: 20px">
+            <button>Email me current quotes</button>
+          </div>
+        </form>
       </div>
       <div style = "padding: 20px; background-color: #878787">
         <div >
@@ -411,7 +422,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
     }
     return string
   }
-  const quotesRequestNotification = {
+  const  quotesRequestNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
     subject,
