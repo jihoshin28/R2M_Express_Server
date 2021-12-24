@@ -44,7 +44,7 @@ const sendContactEmail = async(name, email, subject, message) => {
             <div style = "padding-bottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
-            <div style = "padding-bottom: 20px; padding-top: 20px">
+            <div style = "padding-bottom: 30px;>
               <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
             </div> 
             <div>
@@ -218,7 +218,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
           <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
-          <div style = "padding-bottom: 20px; padding-top: 20px">
+          <div style = "padding-bottom: 30px;>
             <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
           </div> 
           <div>
@@ -347,62 +347,6 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
   })
 }
 
-const sendReviewsRequestEmail = async(name, email, subject, message) => {
-  const transporter2 = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: process.env.GMAIL_USERNAME,
-        pass: process.env.GMAIL_PASSWORD
-    }
-}); 
-  const sendReviewsNotification = {
-    from: "jihoshin.28@gmail.com",
-    to: "jihoshin.28@gmail.com",
-    subject,
-    html: `
-    <html>
-      <div style = "padding: 15px; background-color: #EEEEEE;">
-        <h1>New Contact Request Submitted</h1>
-      </div>
-      <div style = "padding: 20px; background-color: #EEEEEE;">
-        <h3>Contact Details</h3>
-        <br></br>
-        <p>Subject: ${subject}</p>
-        <p>From: ${name}</p>
-        <p>Email: ${email}</p>
-        <p>Message: ${message}</p>
-      </div>
-      <div style = "padding: 20px; background-color: #878787">
-        <div>
-          <div>
-            <h5 style = "color: white;">
-              ©2021 UpackHaulers All Rights Reserved
-            </h5>
-          </div> 
-          <div style = "padding-bottom: 20px;">
-            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
-          </div> 
-          <div style = "padding-bottom: 20px; padding-top: 20px">
-            <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
-          </div> 
-          <div>
-            <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
-          </div>
-        </div>
-      </div>
-    </html>
-    `
-  }
-
-  await transporter2.sendMail(sendReviewsNotification, function (err, info)  {
-      if (err) {
-        console.log(err)
-      } else {
-        console.log(info)
-      }
-  })
-}
-
 const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
   console.log(quotes)
   const transporter2 = nodemailer.createTransport({
@@ -469,7 +413,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
           <table style = "border: 1px solid black">
             <thead>
               <tr>
-                  <th class = "table-header" colspan="7">Quotes List</th>
+                  <th class = "table-header" colspan="8">Quotes List</th>
               </tr>
             </thead>
             <tbody>
@@ -486,9 +430,6 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               ${renderQuotes()}
             </tbody>
           </table>
-          <div style = "padding-top: 20px;">
-            <a href = "https://www.upackhaulers.com">Go to admin panel</a>
-          </div> 
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
@@ -500,7 +441,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
             <div style = "padding-bottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
-            <div style = "padding-bottom: 20px; padding-top: 20px">
+            <div style = "padding-bottom: 30px;>
               <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
             </div> 
             <div>
@@ -527,6 +468,5 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
 module.exports = {
     sendContactEmail,
     sendQuoteEmail,
-    sendQuotesRequestEmail,
-    sendReviewsRequestEmail
+    sendQuotesRequestEmail
 }
