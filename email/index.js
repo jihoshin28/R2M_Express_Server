@@ -456,7 +456,6 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
   })
 }
 
-
 module.exports = {
     sendContactEmail,
     sendQuoteEmail,
