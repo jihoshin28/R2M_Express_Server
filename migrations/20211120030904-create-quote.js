@@ -27,7 +27,7 @@ module.exports = {
         type: Sequelize.STRING
       },
       distance: {
-        type: Sequelize.FLOAT
+        type: Sequelize.STRING
       },
       weight_total: {
         type: Sequelize.FLOAT
