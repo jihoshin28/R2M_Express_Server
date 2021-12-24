@@ -35,7 +35,7 @@ const sendContactEmail = async(name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "padding-bottom: 20px;">
+            <div style = "paddingBottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
@@ -70,7 +70,7 @@ const sendContactEmail = async(name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "padding-bottom: 20px;">
+            <div style = "paddingBottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
@@ -201,7 +201,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "padding-bottom: 20px;">
+          <div style = "paddingBottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -301,7 +301,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "padding-bottom: 20px;">
+          <div style = "paddingBottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -362,7 +362,7 @@ const sendReviewsRequestEmail = async(name, email, subject, message) => {
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "padding-bottom: 20px;">
+          <div style = "paddingBottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -464,9 +464,11 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               ${renderQuotes()}
             </tbody>
           </table>
-          <div style = "paddingTop: 30px; background-color: #878787">
-            <button onClick = "sendEmailNotification()">Send quotes request</button>
-          </div>
+          
+            <div style = "paddingTop: 20px">
+              <button onClick = "sendEmailNotification()">Send my greetings</button>
+            </div>
+
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
@@ -475,8 +477,8 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "padding-bottom: 20px;">
-              <button onClick = "sendEmailNotification()">Get Quotes</button>
+            <div style = "paddingBottom: 20px;">
+            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
