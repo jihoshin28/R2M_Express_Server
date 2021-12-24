@@ -80,7 +80,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     distance: {
-      type: DataTypes.FLOAT
+      type: DataTypes.STRING
     },
     weight_total: {
       type: DataTypes.FLOAT

@@ -115,7 +115,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
     return string
   }
   
-  let quoteNotification = {
+  const quoteNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
     subject: "Quote Notification",
@@ -213,7 +213,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
     `
   }
 
-  let customerQuoteNotification = {
+  const customerQuoteNotification = {
     from: "jihoshin.28@gmail.com",
     to: `${email}`,
     subject: "We've received your quote!",
@@ -338,7 +338,7 @@ const sendReviewsRequestEmail = async(name, email, subject, message) => {
         pass: process.env.GMAIL_PASSWORD
     }
 }); 
-  let sendReviewsNotification = {
+  const sendReviewsNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
     subject,
@@ -411,7 +411,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
     }
     return string
   }
-  let quotesRequestNotification = {
+  const quotesRequestNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
     subject,
@@ -464,11 +464,6 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               ${renderQuotes()}
             </tbody>
           </table>
-          <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
-            <div style = "padding-top: 20px">
-              <button>Send quotes request</button>
-            </div>
-          </form>
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
@@ -485,17 +480,6 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
             </div>
           </div>
         </div>
-        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-          <script>
-            console.log(axios)
-            function sendEmailNotification() {
-              axios({
-                method: 'get',
-                url: 'https://intense-oasis-88289.herokuapp.com/quotes_request'
-              });
-            }
-
-          </script>
       </body>
       
     </html>
