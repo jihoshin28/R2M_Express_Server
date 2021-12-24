@@ -35,7 +35,7 @@ const sendContactEmail = async(name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "paddingBottom: 20px;">
+            <div style = "padding-bottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
@@ -70,7 +70,7 @@ const sendContactEmail = async(name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "paddingBottom: 20px;">
+            <div style = "padding-bottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
@@ -201,7 +201,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "paddingBottom: 20px;">
+          <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -301,7 +301,7 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "paddingBottom: 20px;">
+          <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -362,7 +362,7 @@ const sendReviewsRequestEmail = async(name, email, subject, message) => {
               ©2021 UpackHaulers All Rights Reserved
             </h5>
           </div> 
-          <div style = "paddingBottom: 20px;">
+          <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
           <div>
@@ -464,11 +464,11 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               ${renderQuotes()}
             </tbody>
           </table>
-          
-            <div style = "paddingTop: 20px">
-              <button onClick = "sendEmailNotification()">Send my greetings</button>
+          <form action="https://intense-oasis-88289.herokuapp.com/quotes_request" method="GET">
+            <div style = "padding-top: 20px">
+              <button>Send quotes request</button>
             </div>
-
+          </form>
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
@@ -477,7 +477,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
                 ©2021 UpackHaulers All Rights Reserved
               </h5>
             </div> 
-            <div style = "paddingBottom: 20px;">
+            <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
             <div>
