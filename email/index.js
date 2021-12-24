@@ -44,6 +44,9 @@ const sendContactEmail = async(name, email, subject, message) => {
             <div style = "padding-bottom: 20px;">
               <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
             </div> 
+            <div style = "padding-bottom: 20px; padding-top: 20px">
+              <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
+            </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
             </div>
@@ -215,6 +218,9 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
           <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
+          <div style = "padding-bottom: 20px; padding-top: 20px">
+            <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
+          </div> 
           <div>
             <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
           </div>
@@ -376,6 +382,9 @@ const sendReviewsRequestEmail = async(name, email, subject, message) => {
           <div style = "padding-bottom: 20px;">
             <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
           </div> 
+          <div style = "padding-bottom: 20px; padding-top: 20px">
+            <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
+          </div> 
           <div>
             <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
           </div>
@@ -416,8 +425,9 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
         <td class = "body" colspan = "1">${quote.phone}</td>
         <td class = "body" colspan = "1">${quote.move_size}</td>
         <td class = "body" colspan = "1">${quote.vehicle_size}</td>
+        <td class = "body" colspan = "1">${quote.start_city}, ${quote.start_state} </td>
+        <td class = "body" colspan = "1">${quote.delivery_city}, ${quote.delivery_state}</td>
         <td class = "body" colspan = "1">${quote.distance}</td>
-        <td class = "body" colspan = "1">${quote.floor}</td>
       </tr>`
     }
     return string
@@ -469,12 +479,16 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
                 <td class = "header" colspan = "1">Phone</td>
                 <td class = "header" colspan= "1">Move Size</td>
                 <td class = "header" colspan = "1">Vehicle Size</td>
+                <td class = "header" colspan = "1">Start</td>
+                <td class = "header" colspan = "1">Destination</td>
                 <td class = "header" colspan = "1">Distance</td>
-                <td class = "header" colspan = "1">Floor</td>
               </tr>
               ${renderQuotes()}
             </tbody>
           </table>
+          <div style = "padding-top: 20px;">
+            <a href = "https://www.upackhaulers.com">Go to admin panel</a>
+          </div> 
         </div>
         <div style = "padding: 20px; background-color: #878787">
           <div>
@@ -484,7 +498,10 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
               </h5>
             </div> 
             <div style = "padding-bottom: 20px;">
-            <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+              <a href = "https://www.upackhaulers.com">upackhaulers.com</a>
+            </div> 
+            <div style = "padding-bottom: 20px; padding-top: 20px">
+              <a href = "https://www.upackhaulers.com/admin">Admin Panel</a>
             </div> 
             <div>
               <img style = "width: 100px; height: 100px;" src = "https://production-next-images-cdn.thumbtack.com/i/415165151621914633/width/1024.jpeg"/>
