@@ -348,14 +348,6 @@ const sendQuoteEmail = async(name, email, phone, start_street, start_address_det
 }
 
 const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
-  console.log(quotes)
-  const transporter2 = nodemailer.createTransport({
-    service: "gmail",
-    auth: {
-        user: 'jihoshin.28',
-        pass: 'mwhkcbwrcbjuzlcv'
-    }
-  }); 
 
   let renderQuotes = () => {
     let string = ""
@@ -379,7 +371,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
   const  quotesRequestNotification = {
     from: "jihoshin.28@gmail.com",
     to: "jihoshin.28@gmail.com",
-    subject,
+    subject: "Current Quotes",
     html: `
     <html>
       <head>
@@ -455,7 +447,7 @@ const sendQuotesRequestEmail = async(quotes, name, email, subject, message) => {
     `
   }
   console.log(transporter)
-  await transporter2.sendMail(quotesRequestNotification, function (err, info)  {
+  await transporter.sendMail(quotesRequestNotification, function (err, info)  {
       if (err) {
         console.log(err)
       } else {
