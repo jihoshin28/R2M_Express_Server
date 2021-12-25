@@ -6,7 +6,7 @@ const cors = require('cors')
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json())
-app.use(cors({origin: ['https://www.r2mexpress.com/']}))
+app.use(cors({origin: ['http://www.r2mexpress.com/']}))
 app.use('/', routes)
 
 const PORT = process.env.PORT || 3000 
