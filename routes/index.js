@@ -6,7 +6,7 @@ const reviewsController = require('../controllers/review')
 const quoteItemsController = require('../controllers/quoteItem')
 const bookingItemsController = require('../controllers/bookingItem')
 const contactsController = require('../controllers/contact')
-// const auth = require('../controllers/auth')
+const auth = require('../controllers/auth')
 // const admin = require('../controllers/admin')
 // const verifyToken = require('../middleware/index.js').verifyToken
 
@@ -70,7 +70,7 @@ router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.dele
 
 //auth routes
 
-// router.post('/login', auth.login)
+router.post('/login', auth.Login)
 
 //admin routes
 

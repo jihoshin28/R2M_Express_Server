@@ -1,92 +1,41 @@
-const Customer = require('../models/customer')
-// const Driver = require('../models/driver')
+const dotenv = require('dotenv').config()
 
 const Login = async(req, res) => {
-    try{
-        let user_ids = req.body.user_ids
-        res.header('Content-Type', 'application/json')
-        const newContact = new Contact({
-            users: user_ids,
-            messages: []
-        })
-        newContact.save((err) => {
-            if(err) throw err
-        }) 
+    
+    console.log(req.body.loginInfo)
+    let password = req.body.password
+    let username = req.body.username
 
-        for(let i = 0; i < user_ids.length; i++) {
-            User.findById(user_ids[i], function (err, user) {
-                if (err) throw err
-                user.chats = [...user.chats, newChat]
-                user.save((err) => {
-                    if(err) throw err
-                })
-            });
+    if(username !== process.env.ADMIN_USERNAME){
+        return res.json({
+            success: false,
+            message: 'Incorrect username!'
+        })
+    } else {
+        if(myPassword === process.env.ADMIN_PASSWORD){
+    
+            const token = jwt.sign({
+                username: req.body.username,
+                password: req.body.password
+            },
+            process.env.ADMIN_SECRET)
+            console.log(token, 'token')
+            return res.json({
+                success: true,
+                message: "Authorization successful!",
+                token: token
+            })
+        } else {
+            return res.json({
+                success: false,
+                message: "Passwords do not match!"
+            })
         }
         
-        res.json({newContact}).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
     }
-}
 
-const GoogleAuth = (req, res) => {
-    try{
-        let user_ids = req.body.user_ids
-        res.header('Content-Type', 'application/json')
-        const newContact = new Contact({
-            users: user_ids,
-            messages: []
-        })
-        newContact.save((err) => {
-            if(err) throw err
-        }) 
-
-        for(let i = 0; i < user_ids.length; i++) {
-            User.findById(user_ids[i], function (err, user) {
-                if (err) throw err
-                user.chats = [...user.chats, newChat]
-                user.save((err) => {
-                    if(err) throw err
-                })
-            });
-        }
-        
-        res.json({newContact}).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
-}
-
-const PhoneAuth = (req, res) => {
-    try{
-        let user_ids = req.body.user_ids
-        res.header('Content-Type', 'application/json')
-        const newContact = new Contact({
-            users: user_ids,
-            messages: []
-        })
-        newContact.save((err) => {
-            if(err) throw err
-        }) 
-
-        for(let i = 0; i < user_ids.length; i++) {
-            User.findById(user_ids[i], function (err, user) {
-                if (err) throw err
-                user.chats = [...user.chats, newChat]
-                user.save((err) => {
-                    if(err) throw err
-                })
-            });
-        }
-        
-        res.json({newContact}).status(200)
-    } catch(error){
-        res.send(error.message).status(500)
-    }
 }
 
 module.exports = {
-    Login,
-    GoogleAuth,
-    PhoneAuth
+    Login
 }
