@@ -1,21 +1,20 @@
 const jwt = require('jsonwebtoken')
 
 const verifyToken = (req, res, next) => {
-    let token = req.headers["admin-auth"]
-    console.log(req.headers)
+    let token = req.headers["Admin-Auth"]
+
     if(!token){
         return res.status(403).send({
             message: "No token!"
         })
     }
 
-    jwt.verify(token, process.env.SECRET, (err, user) => {
+    jwt.verify(token, process.env.ADMIN_SECRET, (err, user) => {
         if(err){
             return res.status(401).send({
                 message: "Unauthorized"
             })
         }
-        req.user = user
         next()
     })
 }

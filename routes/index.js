@@ -71,6 +71,7 @@ router.delete('/booking_items/:item_id/:booking_id', bookingItemsController.dele
 //auth routes
 
 router.post('/login', auth.Login)
+router.post('/verify_token', auth.verifyToken)
 
 //admin routes
 
