@@ -3,8 +3,8 @@ const dotenv = require('dotenv').config()
 const Login = async(req, res) => {
     
     console.log(req.body.loginInfo)
-    let password = req.body.password
-    let username = req.body.username
+    let password = req.body.loginInfo.password
+    let username = req.body.loginInfo.username
 
     if(username !== process.env.ADMIN_USERNAME){
         return res.json({
@@ -12,7 +12,7 @@ const Login = async(req, res) => {
             message: 'Incorrect username!'
         })
     } else {
-        if(myPassword === process.env.ADMIN_PASSWORD){
+        if(password === process.env.ADMIN_PASSWORD){
     
             const token = jwt.sign({
                 username: req.body.username,
