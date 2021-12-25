@@ -3,7 +3,7 @@ const models = require('../models')
 const getAllReviews = async(req, res) => {
     let reviews = await models.Review.findAll()
     if(reviews.length === 0){
-        return res.json({"status": "There are no reviews."}).status(200)
+        return res.json([]).status(200)
     }
     return res.json(reviews).status(200)
 }

@@ -42,18 +42,18 @@ const verifyToken = (req, res) => {
     let token = req.body.token
 
     if(!token){
-        return res.status(403).send({
+        return res.status(200).send({
             message: "No token!"
         })
     }
 
-    jwt.verify(token, process.env.ADMIN_SECRET, (err, res) => {
+    jwt.verify(token, process.env.ADMIN_SECRET, (err, response) => {
         if(err){
-            return res.status(401).send({
+            return res.status(200).send({
                 message: "Unauthorized"
             })
         }
-        return res.json({status: "Authorized", res}).status(200)
+        return res.json({status: "Authorized", response}).status(200)
     })
 }
 
